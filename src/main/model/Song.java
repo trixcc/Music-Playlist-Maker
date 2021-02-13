@@ -13,15 +13,31 @@ public class Song {
 
     }
 
-    public void addArtistName(String artistName, Song s) {
+    // REQUIRES: newTitle has a non-zero length
+    // MODIFIES: this
+    // EFFECTS: renames the title of a song
+    public void renameSong(String newTitle) {
 
     }
 
-    public void addAlbumName(String albumName, Song s) {
+    // REQUIRES: artistName has a non-zero length
+    // MODIFIES: this
+    // EFFECTS: adds the artist's name to the song
+    public void addArtistName(String artistName) {
 
     }
 
-    public void addSongLength(float songLength, Song s) {
+    // REQUIRES: albumName has a non-zero length
+    // MODIFIES: this
+    // EFFECTS: adds the song's album name
+    public void addAlbumName(String albumName) {
+
+    }
+
+    // REQUIRES: songLength > 0
+    // MODIFIES: this
+    // EFFECTS: adds the length of the song (in minutes)
+    public void addSongLength(double songLength) {
 
     }
 

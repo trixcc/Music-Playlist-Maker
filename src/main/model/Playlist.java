@@ -11,16 +11,16 @@ public class Playlist {
         //stub
     }
 
-    public String getPlaylistName() {
-        return null; //stub
-    }
+    // REQUIRES: newPlaylistName has non-zero length
+    // MODIFIES: this
+    // EFFECTS: renames the playlist
+    public void renamePlaylist(String newPlaylistName) {
 
-    public int getPlaylistSize() {
-        return 0; //stub
     }
 
     // MODIFIES: this
-    // EFFECTS: adds given song to playlist and size of playlist increases by 1
+    // EFFECTS: adds given song to playlist and size of playlist increases by 1,
+    //          if given song is already in playlist, it will not be added again
     public void addSong(Song s) {
 
     }
@@ -32,11 +32,17 @@ public class Playlist {
 
     }
 
-    // REQUIRES: newPlaylistName has non-zero length
-    // MODIFIES: this
-    // EFFECTS: renames the playlist
-    public void renamePlaylist(String newPlaylistName) {
+    // EFFECTS: returns true if a playlist contains the given song, returns false otherwise
+    public boolean contains(Song s) {
+        return false; //stub
+    }
 
+    public String getPlaylistName() {
+        return null; //stub
+    }
+
+    public int getPlaylistSize() {
+        return 0; //stub
     }
 
 
