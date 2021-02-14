@@ -27,8 +27,8 @@ public class Playlist {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds given song to playlist's songList and size of playlist increases by 1,
-    //          if song is already on the playlist's songList, nothing is added
+    // EFFECTS: adds Song s to playlist's songList and size of playlist increases by 1,
+    //          if Song s is already on the playlist's songList, it will not be added again
     public void addSong(Song s) {
         if (!songList.contains(s)) {
             songList.add(s);
@@ -38,15 +38,12 @@ public class Playlist {
 
     }
 
-    // REQUIRES: playlist is not empty and song s has to already be in playlist
+    // REQUIRES: playlist is not empty and Song s has to already be in playlist's songList
     // MODIFIES: this
-    // EFFECTS: removes given song from playlist and size of playlist decreases by 1
+    // EFFECTS: removes Song s from playlist's songList and size of playlist decreases by 1
     public void removeSong(Song s) {
-        if (songList.contains(s)) {
-            songList.remove(s);
-            size--;
-
-        }
+        songList.remove(s);
+        size--;
 
     }
 
