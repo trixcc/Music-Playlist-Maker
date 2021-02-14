@@ -61,7 +61,7 @@ public class PlaylistApp {
 
             if (command.length() > 0) {
                 runOn = false;
-                displaySongs(command);
+                homePage(command);
             }
         }
 
@@ -69,30 +69,27 @@ public class PlaylistApp {
 
     // EFFECTS: displays a list of songs in the playlist,
     //          asks user if they want to add a song
-    private void displaySongs(String playlistName) {
+    private void homePage(String playlistName) {
         boolean runOn = true;
         String command = null;
         playlist = new Playlist(playlistName);
 
-        displayHomePage(playlistName);
-
         while (runOn) {
-            songAddOrRemove();
+            songAddOrRemove(playlistName);
             command = input.next();
 
-            if (command.equals("2")) {
+            if (command.equals("4")) {
                 runOn = false;
             } else if (command.equals("1")) {
-                runOn = false;
                 songMenu(playlistName);
-            } else if (command.equals("3")) {
+            } else if (command.equals("2")) {
                 removeOption();
+            } else if (command.equals("3")) {
+                displayHomePage(playlistName);
             } else {
                 System.out.println("Selection not valid.");
             }
         }
-
-        sideMenu();
 
     }
 
@@ -104,16 +101,12 @@ public class PlaylistApp {
 
     // EFFECTS: displays an option to add or remove a song to the playlist,
     //          remove option is displayed only if the playlist is not empty
-    private void songAddOrRemove() {
-        System.out.println("\nAdd a song?");
-        System.out.println("\tEnter 1 for YES");
-        System.out.println("\tEnter 2 for NO");
+    private void songAddOrRemove(String playlistName) {
+        System.out.println("\nEnter 1 to Add a Song");
+        System.out.println("Enter 2 for Remove a Song");
+        System.out.println("Enter 3 to View Playlist");
+        System.out.println("Enter 4 to Quit Application");
 
-        if (playlist.getPlaylistSize() > 0) {
-            System.out.println("\nRemove a song?");
-            System.out.println("\tEnter 3 for YES");
-            System.out.println("\tEnter 2 for NO");
-        }
     }
 
     private void removeOption() {
@@ -137,7 +130,7 @@ public class PlaylistApp {
             }
         }
 
-        displaySongs(playlistName);
+        displayHomePage(playlistName);
     }
 
     private void processCommand(String command) {
@@ -197,10 +190,6 @@ public class PlaylistApp {
     }
 
     private void lengthOption() {
-
-    }
-
-    private void sideMenu() {
 
     }
 
