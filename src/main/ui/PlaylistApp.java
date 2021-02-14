@@ -7,7 +7,7 @@ import java.util.Scanner;
 // A Music Playlist Maker application
 public class PlaylistApp {
     private Playlist playlist;
-    private Scanner input = new Scanner(System.in);
+    private Scanner input;
 
     // EFFECTS: runs the playlist application
     public PlaylistApp() {
@@ -19,6 +19,7 @@ public class PlaylistApp {
     private void runPlaylistApp() {
         boolean runOn = true;
         int command = 0;
+        input = new Scanner(System.in);
 
         while (runOn) {
             mainMenu();
@@ -54,7 +55,7 @@ public class PlaylistApp {
         System.out.println("\nWhat would you like to name your new playlist?");
 
         while (runOn) {
-            command = input.next();
+            command = input.nextLine();
 
             if (command.length() > 0) {
                 runOn = false;
