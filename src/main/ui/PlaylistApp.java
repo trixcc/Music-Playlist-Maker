@@ -1,6 +1,7 @@
 package ui;
 
 import model.Playlist;
+import model.Song;
 
 import java.util.Scanner;
 
@@ -71,21 +72,19 @@ public class PlaylistApp {
     private void displaySongs(String playlistName) {
         boolean runOn = true;
         String command = null;
-        Playlist playlist = new Playlist(playlistName);
+        playlist = new Playlist(playlistName);
 
-        System.out.println("\nHere is your playlist called " + playlistName + "!");
-        System.out.println("\nIt currently has " + String.valueOf(playlist.getPlaylistSize()) + " songs.");
-        System.out.println(playlist.getSongList());
+        displayHomePage(playlistName);
 
         while (runOn) {
-            songAddOrRemove(playlist);
+            songAddOrRemove();
             command = input.next();
 
             if (command.equals("2")) {
                 runOn = false;
             } else if (command.equals("1")) {
                 runOn = false;
-                songMenu(playlist, playlistName);
+                songMenu(playlistName);
             } else if (command.equals("3")) {
                 removeOption();
             } else {
@@ -97,9 +96,15 @@ public class PlaylistApp {
 
     }
 
+    private void displayHomePage(String playlistName) {
+        System.out.println("\nHere is your playlist called " + playlistName + "!");
+        System.out.println("\nIt currently has " + String.valueOf(playlist.getPlaylistSize()) + " songs.");
+        System.out.println(playlist.getSongList());
+    }
+
     // EFFECTS: displays an option to add or remove a song to the playlist,
     //          remove option is displayed only if the playlist is not empty
-    private void songAddOrRemove(Playlist playlist) {
+    private void songAddOrRemove() {
         System.out.println("\nAdd a song?");
         System.out.println("\tEnter 1 for YES");
         System.out.println("\tEnter 2 for NO");
@@ -117,7 +122,7 @@ public class PlaylistApp {
 
     // MODIFIES: this
     // EFFECTS: displays options to user for making a song
-    private void songMenu(Playlist playlist, String playlistName) {
+    private void songMenu(String playlistName) {
         boolean runOn = true;
         String command = null;
 
@@ -127,18 +132,26 @@ public class PlaylistApp {
 
             if (command.equals("0")) {
                 runOn = false;
-                displaySongs(playlistName);
-            } else if (command.equals("1")) {
-                nameOption(playlist);
-            } else if (command.equals("2")) {
-                artistOption(playlist);
-            } else if (command.equals("3")) {
-                albumOption(playlist);
-            } else if (command.equals("4")) {
-                lengthOption(playlist);
             } else {
-                System.out.println("\n Selection not valid.");
+                processCommand(command);
             }
+        }
+
+        displaySongs(playlistName);
+    }
+
+    private void processCommand(String command) {
+        if (command.equals("1")) {
+            nameOption();
+        } else if (command.equals("2")) {
+            artistOption();
+        } else if (command.equals("3")) {
+            albumOption();
+        } else if (command.equals("4")) {
+            lengthOption();
+        } else {
+            System.out.println("\n Selection not valid.");
+
         }
 
     }
@@ -153,20 +166,38 @@ public class PlaylistApp {
 
     }
 
-    private void nameOption(Playlist playlist) {
+    private void nameOption() {
+        Song newSong;
+        boolean runOn = true;
+        String command = "";
+
+        System.out.println("Enter a name: ");
+
+        while (runOn) {
+            command = input.nextLine();
+
+            if (command.length() > 0) {
+                runOn = false;
+            }
+
+        }
+
+        newSong = new Song(command);
+        playlist.addSong(newSong);
+        System.out.println("\n Name added.");
 
     }
 
-    private void artistOption(Playlist playlist) {
+    private void artistOption() {
 
     }
 
-    private void albumOption(Playlist playlist) {
+    private void albumOption() {
 
     }
 
-    private void lengthOption(Playlist playlist) {
-        
+    private void lengthOption() {
+
     }
 
     private void sideMenu() {
