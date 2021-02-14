@@ -40,4 +40,5 @@ public class SongTest {
         assertEquals(4.33, testSong.getLength());
 
     }
+
 }

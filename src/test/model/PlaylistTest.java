@@ -23,9 +23,9 @@ class PlaylistTest {
     }
 
     @Test
-    public void testNamePlaylist() {
+    public void testRenamePlaylist() {
         assertEquals("Happy Music", testPlaylist.getPlaylistName());
-        testPlaylist.namePlaylist("Sad Music");
+        testPlaylist.renamePlaylist("Sad Music");
         assertEquals("Sad Music", testPlaylist.getPlaylistName());
 
     }
@@ -44,6 +44,9 @@ class PlaylistTest {
         testPlaylist.addSong(songB);
         testPlaylist.addSong(songC);
         assertEquals(3, testPlaylist.getPlaylistSize());
+        assertTrue(testSongList.contains(songA));
+        assertTrue(testSongList.contains(songB));
+        assertTrue(testSongList.contains(songC));
 
     }
 
@@ -62,8 +65,11 @@ class PlaylistTest {
     public void testRemoveSong() {
         testPlaylist.addSong(songA);
         assertEquals(1, testPlaylist.getPlaylistSize());
+        assertTrue(testSongList.contains(songA));
+
         testPlaylist.removeSong(songA);
         assertEquals(0, testPlaylist.getPlaylistSize());
+        assertFalse(testSongList.contains(songA));
 
     }
 
@@ -73,13 +79,17 @@ class PlaylistTest {
         testPlaylist.addSong(songB);
         testPlaylist.addSong(songC);
         assertEquals(3, testPlaylist.getPlaylistSize());
+        assertTrue(testSongList.contains(songA));
+        assertTrue(testSongList.contains(songB));
+        assertTrue(testSongList.contains(songC));
+
         testPlaylist.removeSong(songC);
         testPlaylist.removeSong(songA);
         assertEquals(1, testPlaylist.getPlaylistSize());
+        assertFalse(testSongList.contains(songA));
+        assertTrue(testSongList.contains(songB));
+        assertFalse(testSongList.contains(songC));
 
     }
-
-
-
 
 }
