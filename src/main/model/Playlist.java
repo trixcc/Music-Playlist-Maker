@@ -1,27 +1,40 @@
 package model;
 
+import java.util.Collections;
+import java.util.List;
+
 // Represents a playlist having a name and size
 public class Playlist {
     private String name;
     private int size;
+    private List<Song> songList;
 
     // REQUIRES: playlistName has non-zero length
     // EFFECTS: constructs a playlist with given name and initial size of zero
     public Playlist(String playlistName) {
-        //stub
+        name = playlistName;
+        size = 0;
+        songList = null;
+
     }
 
     // REQUIRES: newPlaylistName has non-zero length
     // MODIFIES: this
     // EFFECTS: renames the playlist
-    public void renamePlaylist(String newPlaylistName) {
+    public void namePlaylist(String newPlaylistName) {
+        this.name = newPlaylistName;
 
     }
 
     // MODIFIES: this
-    // EFFECTS: adds given song to playlist and size of playlist increases by 1,
-    //          if given song is already in playlist, it will not be added again
+    // EFFECTS: adds given song to playlist's songList and size of playlist increases by 1,
+    //          if song is already on the playlist's songList, nothing is added
     public void addSong(Song s) {
+        if (!songList.contains(s)) {
+            songList.add(s);
+            this.size++;
+
+        }
 
     }
 
@@ -32,17 +45,16 @@ public class Playlist {
 
     }
 
-    // EFFECTS: returns true if a playlist contains the given song, returns false otherwise
-    public boolean contains(Song s) {
-        return false; //stub
-    }
-
     public String getPlaylistName() {
         return null; //stub
     }
 
     public int getPlaylistSize() {
         return 0; //stub
+    }
+
+    public List<Song> getSongList() {
+        return null; //stub
     }
 
 
