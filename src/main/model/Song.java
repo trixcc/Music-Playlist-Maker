@@ -5,11 +5,16 @@ public class Song {
     private String title;
     private String artist;
     private String album;
-    private float length;
+    private double length;
 
     // REQUIRES: title has a non-zero length
-    // EFFECTS: constructs a song with the given title/name
+    // EFFECTS: constructs a song with the given title/name,
+    //          the song's artist, album, and length are still unknown
     public Song(String title) {
+        this.title = title;
+        artist = null;
+        album = null;
+        length = 0;
 
     }
 
@@ -17,6 +22,7 @@ public class Song {
     // MODIFIES: this
     // EFFECTS: renames the title of a song
     public void renameSong(String newTitle) {
+        title = newTitle;
 
     }
 
@@ -24,6 +30,7 @@ public class Song {
     // MODIFIES: this
     // EFFECTS: adds the artist's name to the song
     public void addArtistName(String artistName) {
+        artist = artistName;
 
     }
 
@@ -31,6 +38,7 @@ public class Song {
     // MODIFIES: this
     // EFFECTS: adds the song's album name
     public void addAlbumName(String albumName) {
+        album = albumName;
 
     }
 
@@ -38,27 +46,24 @@ public class Song {
     // MODIFIES: this
     // EFFECTS: adds the length of the song (in minutes)
     public void addSongLength(double songLength) {
+        length = songLength;
 
     }
 
     public String getTitle() {
-
-        return null;
+        return title;
     }
 
     public String getArtist() {
-
-        return null;
+        return artist;
     }
 
     public String getAlbum() {
-
-        return null;
+        return album;
     }
 
-    public float getLength() {
-
-        return 0;
+    public double getLength() {
+        return length;
     }
 
 }
