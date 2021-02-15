@@ -12,13 +12,13 @@ public class PlaylistApp {
 
     // EFFECTS: runs the playlist application
     public PlaylistApp() {
-        runPlaylistApp();
+        runPlaylist();
     }
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    // runPlaylistApp based on runTeller from Teller application
-    private void runPlaylistApp() {
+    // runPlaylist based on runTeller from Teller application
+    private void runPlaylist() {
         boolean runOn = true;
         String command;
         input = new Scanner(System.in);
