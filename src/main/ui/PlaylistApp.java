@@ -2,6 +2,7 @@ package ui;
 
 import model.Playlist;
 import model.Song;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,7 +37,6 @@ public class PlaylistApp {
             } else {
                 System.out.println("\nSelection not valid.");
             }
-
         }
     }
 
@@ -65,7 +65,6 @@ public class PlaylistApp {
                 homePage(command);
             }
         }
-
     }
 
     // MODIFIES: this
@@ -91,6 +90,7 @@ public class PlaylistApp {
                 System.out.println("Selection not valid.");
             }
         }
+
         System.out.println("See you later!");
 
     }
@@ -130,7 +130,6 @@ public class PlaylistApp {
             if (command.length() > 0) {
                 runOn = false;
             }
-
         }
 
         newSong = new Song(command);
@@ -163,11 +162,14 @@ public class PlaylistApp {
                         runOn = false;
                     }
                 }
+
                 playlist.removeSong(toRemove);
+
             }
         }
 
         displayPlaylist(playlistName);
 
     }
+
 }
