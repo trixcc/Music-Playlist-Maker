@@ -15,13 +15,9 @@ I want to create a simple-to-use application that can organize my music (eg. bas
 
 #### User Stories:
 - As a user, I want to be able to create and name a new playlist.
-- As a user, I want to be able to rename a playlist.
 - As a user, I want to be able to add a song to a playlist.
 - As a user, I want to be able to remove a song from a playlist.
 - As a user, I want to be able to see how many songs are in a playlist.
 - As a user, I want to be able to view a list of all the song titles in a playlist.
-- As a user, I want to be able to select a song from a playlist and view its details.
-    - The details of a song include the title of the song, the artist's name, the album name,
-    and the length of the song.
 
 

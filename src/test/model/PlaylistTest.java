@@ -23,14 +23,6 @@ class PlaylistTest {
     }
 
     @Test
-    public void testRenamePlaylist() {
-        assertEquals("Happy Music", testPlaylist.getPlaylistName());
-        testPlaylist.renamePlaylist("Sad Music");
-        assertEquals("Sad Music", testPlaylist.getPlaylistName());
-
-    }
-
-    @Test
     public void testAddSong() {
         testPlaylist.addSong(songA);
         assertEquals(1, testPlaylist.getPlaylistSize());

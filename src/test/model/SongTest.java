@@ -7,17 +7,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SongTest {
     private Song testSong;
 
-    @BeforeEach
-    public void setup() {
+    @Test
+    public void testConstructor() {
         testSong = new Song("Where Is The Love?");
+        assertEquals("Where Is The Love?", testSong.getTitle());
     }
 
-    @Test
-    public void testRenameSong() {
-        assertEquals("Where Is The Love?", testSong.getTitle());
-        testSong.renameSong("Where Is The Love? - Remix");
-        assertEquals("Where Is The Love? - Remix", testSong.getTitle());
-
+/*    @BeforeEach
+    public void setup() {
+        testSong = new Song("Where Is The Love?");
     }
 
     @Test
@@ -39,6 +37,6 @@ public class SongTest {
         testSong.addSongLength(4.33);
         assertEquals(4.33, testSong.getLength());
 
-    }
+    }*/
 
 }

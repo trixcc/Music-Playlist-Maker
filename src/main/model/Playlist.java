@@ -18,14 +18,6 @@ public class Playlist {
 
     }
 
-    // REQUIRES: newPlaylistName has non-zero length
-    // MODIFIES: this
-    // EFFECTS: renames the playlist
-    public void renamePlaylist(String newPlaylistName) {
-        name = newPlaylistName;
-
-    }
-
     // MODIFIES: this
     // EFFECTS: adds Song s to playlist's songList and size of playlist increases by 1,
     //          if Song s is already on the playlist's songList, it will not be added again
@@ -42,8 +34,10 @@ public class Playlist {
     // MODIFIES: this
     // EFFECTS: removes Song s from playlist's songList and size of playlist decreases by 1
     public void removeSong(Song s) {
-        songList.remove(s);
-        size--;
+        if (songList.contains(s)) {
+            songList.remove(s);
+            size--;
+        }
 
     }
 

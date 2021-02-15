@@ -12,21 +12,17 @@ public class Song {
     //          the song's artist, album, and length are still unknown
     public Song(String title) {
         this.title = title;
-        artist = null;
-        album = null;
-        length = 0;
+        //artist = null;
+        //album = null;
+        //length = 0;
 
     }
 
-    // REQUIRES: newTitle has a non-zero length
-    // MODIFIES: this
-    // EFFECTS: renames the title of a song
-    public void renameSong(String newTitle) {
-        title = newTitle;
-
+    public String getTitle() {
+        return title;
     }
 
-    // REQUIRES: artistName has a non-zero length
+    /*// REQUIRES: artistName has a non-zero length
     // MODIFIES: this
     // EFFECTS: adds the artist's name to the song
     public void addArtistName(String artistName) {
@@ -50,10 +46,6 @@ public class Song {
 
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public String getArtist() {
         return artist;
     }
@@ -65,6 +57,6 @@ public class Song {
     public double getLength() {
         return length;
     }
-
+*/
 }
 
