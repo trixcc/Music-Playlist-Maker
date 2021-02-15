@@ -19,14 +19,14 @@ public class Playlist {
     }
 
     // MODIFIES: this
-    // EFFECTS: Adds Song s to playlist's songList and size of playlist increases by 1.
+    // EFFECTS: adds Song s to playlist's songList and size of playlist increases by 1
     public void addSong(Song s) {
         songList.add(s);
         size++;
 
     }
 
-    // REQUIRES: Playlist is not empty
+    // REQUIRES: playlist is not empty
     // MODIFIES: this
     // EFFECTS: If Song s is in playlist's songList, removes it and size of playlist decreases by 1.
     //          Otherwise, do nothing.

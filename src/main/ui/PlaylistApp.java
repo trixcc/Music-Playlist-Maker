@@ -2,7 +2,6 @@ package ui;
 
 import model.Playlist;
 import model.Song;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,13 +17,14 @@ public class PlaylistApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input
+    // runPlaylistApp based on runTeller from Teller application
     private void runPlaylistApp() {
         boolean runOn = true;
-        String command = null;
+        String command;
         input = new Scanner(System.in);
 
         while (runOn) {
-            mainMenu();
+            startMenu();
             command = input.next();
 
             if (command.equals("2")) {
@@ -41,8 +41,8 @@ public class PlaylistApp {
     }
 
 
-    // EFFECTS: displays a starting menu to the user
-    private void mainMenu() {
+    // EFFECTS: displays the starting menu to the user
+    private void startMenu() {
         System.out.println("\nHello! Would you like to make a new playlist?");
         System.out.println("\tEnter 1 for YES");
         System.out.println("\tEnter 2 for NO");
@@ -50,10 +50,10 @@ public class PlaylistApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: asks user to name their new playlist
+    // EFFECTS: prompts user to name their new playlist
     private void beginPlaylistMaking() {
         boolean runOn = true;
-        String command = null;
+        String command;
 
         System.out.println("\nWhat would you like to name your new playlist?");
 
@@ -68,10 +68,11 @@ public class PlaylistApp {
 
     }
 
-    // EFFECTS: displays the homepage
+    // MODIFIES: this
+    // EFFECTS: displays a homepage of the playlist application and processes user input
     private void homePage(String playlistName) {
         boolean runOn = true;
-        String command = null;
+        String command;
         playlist = new Playlist(playlistName);
 
         while (runOn) {
@@ -95,16 +96,17 @@ public class PlaylistApp {
     }
 
     // EFFECTS: displays the user's playlist
+    // for loop code block based on code from stack overflow
     private void displayPlaylist(String playlistName) {
         System.out.println("\nYOUR PLAYLIST: " + playlistName);
-        System.out.println("[ " + String.valueOf(playlist.getPlaylistSize()) + " song(s) ]\n");
-// cite stack overflow
+        System.out.println("[ " + (playlist.getPlaylistSize()) + " song(s) ]\n");
+
         for (Song song : playlist.getSongList()) {
             System.out.println(song.getTitle());
         }
     }
 
-    // EFFECTS: displays the homepage's options to user
+    // EFFECTS: displays the homepage's options
     private void homePageOptions(String playlistName) {
         System.out.println("\nEnter 1 to Add a Song");
         System.out.println("Enter 2 to Remove a Song");
@@ -113,12 +115,14 @@ public class PlaylistApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts user to enter a title and adds that song to their playlist
     private void titleOption() {
         Song newSong;
         boolean runOn = true;
         String command = "";
 
-        System.out.println("\nEnter title of song:");
+        System.out.println("\nEnter title of song to add:");
 
         while (runOn) {
             command = input.nextLine();
@@ -135,13 +139,16 @@ public class PlaylistApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts user to enter a title to remove from playlist or to cancel,
+    //          processes the user's input
     private void removeOption(String playlistName) {
         boolean runOn = true;
-        String command = null;
+        String command;
         List<Song> songList = playlist.getSongList();
         Song toRemove = new Song("");
 
-        System.out.println("\nWhat is the title of the song that you want to remove?");
+        System.out.println("\nEnter title of song to remove:");
         System.out.println("Enter 0 to cancel.");
 
         while (runOn) {
