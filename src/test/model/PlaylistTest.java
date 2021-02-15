@@ -23,6 +23,14 @@ class PlaylistTest {
     }
 
     @Test
+    public void testConstructor() {
+        assertEquals("Happy Music", testPlaylist.getPlaylistName());
+        assertEquals(0, testPlaylist.getPlaylistSize());
+        assertEquals(0, testSongList.size());
+
+    }
+
+    @Test
     public void testAddSong() {
         testPlaylist.addSong(songA);
         assertEquals(1, testPlaylist.getPlaylistSize());
@@ -39,17 +47,6 @@ class PlaylistTest {
         assertTrue(testSongList.contains(songA));
         assertTrue(testSongList.contains(songB));
         assertTrue(testSongList.contains(songC));
-
-    }
-
-    @Test
-    public void testAddSongAlreadyInPlaylist() {
-        testPlaylist.addSong(songA);
-        assertEquals(1, testPlaylist.getPlaylistSize());
-        testPlaylist.addSong(songB);
-        assertEquals(2, testPlaylist.getPlaylistSize());
-        testPlaylist.addSong(songA);
-        assertEquals(2, testPlaylist.getPlaylistSize());
 
     }
 
@@ -81,6 +78,19 @@ class PlaylistTest {
         assertFalse(testSongList.contains(songA));
         assertTrue(testSongList.contains(songB));
         assertFalse(testSongList.contains(songC));
+
+    }
+
+    @Test
+    public void testRemoveSongNotInSongList() {
+        testPlaylist.addSong(songA);
+        assertEquals(1, testPlaylist.getPlaylistSize());
+        assertTrue(testSongList.contains(songA));
+        assertFalse(testSongList.contains(songB));
+        testPlaylist.removeSong(songB);
+        assertEquals(1, testPlaylist.getPlaylistSize());
+        assertTrue(testSongList.contains(songA));
+        assertFalse(testSongList.contains(songB));
 
     }
 

@@ -145,82 +145,22 @@ public class PlaylistApp {
         System.out.println("Enter 0 to cancel.");
 
         while (runOn) {
-            command = input.next();
-
-
-            if (command.equals("0")) {
-                System.out.println("\nCancelled.");
-            } else {
-                for (Song song : songList) {
-                    if (command.equals(song.getTitle())) {
-                        toRemove = song;
-                    }
-                }
-                playlist.removeSong(toRemove);
-            }
-            runOn = false;
-            displayPlaylist(playlistName);
-        }
-
-    }
-}
-
-    /*    // MODIFIES: this
-    // EFFECTS: displays options to user for making a song
-    private void songMenu(String playlistName) {
-        boolean runOn = true;
-        String command = null;
-
-        while (runOn) {
-            songOptions();
-            command = input.next();
+            command = input.nextLine();
 
             if (command.equals("0")) {
                 runOn = false;
             } else {
-                processCommand(command);
+                for (Song song : songList) {
+                    if (command.equals(song.getTitle())) {
+                        toRemove = song;
+                        runOn = false;
+                    }
+                }
+                playlist.removeSong(toRemove);
             }
         }
 
-        displayHomePage(playlistName);
-    }
-
-    private void processCommand(String command) {
-        if (command.equals("1")) {
-            nameOption();
-        } else if (command.equals("2")) {
-            artistOption();
-        } else if (command.equals("3")) {
-            albumOption();
-        } else if (command.equals("4")) {
-            lengthOption();
-        } else {
-            System.out.println("\n Selection not valid.");
-
-        }
+        displayPlaylist(playlistName);
 
     }
-
-    private void songOptions() {
-        System.out.println("\nSong Options:");
-        System.out.println("\tEnter 1 to add a title of your song.");
-        System.out.println("\tEnter 2 to add the artist of your song.");
-        System.out.println("\tEnter 3 to add the album of your song.");
-        System.out.println("\tEnter 4 to add the length of your song.");
-        System.out.println("\tEnter 0 to view your playlist.");
-
-    }*/
-
-/*    private void artistOption() {
-
-    }
-
-    private void albumOption() {
-
-    }
-
-    private void lengthOption() {
-
-    }*/
-
-
+}
