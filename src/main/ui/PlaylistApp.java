@@ -30,7 +30,7 @@ public class PlaylistApp {
 
             if (command.equals("2")) {
                 runOn = false;
-                System.out.println("See you later!");
+                System.out.println("\nSee you later!");
             } else if (command.equals("1")) {
                 runOn = false;
                 beginPlaylistMaking();
@@ -43,9 +43,9 @@ public class PlaylistApp {
 
     // EFFECTS: displays the starting menu to the user
     private void startMenu() {
-        System.out.println("\nHello! Would you like to make a new playlist?");
-        System.out.println("\tEnter 1 for YES");
-        System.out.println("\tEnter 2 for NO");
+        System.out.println("\nHello! Would you like to make a new playlist?\n");
+        System.out.println("Enter 1 for YES");
+        System.out.println("Enter 2 for NO\n");
 
     }
 
@@ -91,7 +91,7 @@ public class PlaylistApp {
             }
         }
 
-        System.out.println("See you later!");
+        System.out.println("\nSee you later!");
 
     }
 
@@ -111,7 +111,7 @@ public class PlaylistApp {
         System.out.println("\nEnter 1 to Add a Song");
         System.out.println("Enter 2 to Remove a Song");
         System.out.println("Enter 3 to View Playlist");
-        System.out.println("Enter 4 to Quit Application");
+        System.out.println("Enter 4 to Quit Application\n");
 
     }
 
@@ -122,7 +122,7 @@ public class PlaylistApp {
         boolean runOn = true;
         String command = "";
 
-        System.out.println("\nEnter title of song to add:");
+        System.out.println("\nEnter title of song to add:\n");
 
         while (runOn) {
             command = input.nextLine();
@@ -134,7 +134,7 @@ public class PlaylistApp {
 
         newSong = new Song(command);
         playlist.addSong(newSong);
-        System.out.println("\n Name added.");
+        System.out.println("\n\tSong added.");
 
     }
 
@@ -148,7 +148,7 @@ public class PlaylistApp {
         Song toRemove = new Song("");
 
         System.out.println("\nEnter title of song to remove:");
-        System.out.println("Enter 0 to cancel.");
+        System.out.println("Enter 0 to cancel.\n");
 
         while (runOn) {
             command = input.nextLine();

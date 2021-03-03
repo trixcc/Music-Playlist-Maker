@@ -19,5 +19,7 @@ I want to create a simple-to-use application that can organize my music (eg. bas
 - As a user, I want to be able to remove a song from a playlist.
 - As a user, I want to be able to see how many songs are in a playlist.
 - As a user, I want to be able to view a list of all the song titles in a playlist.
+- As a user, I want to be able to save my playlist to file.
+- As a user, I want to be able to load my playlist from file.
 
 
