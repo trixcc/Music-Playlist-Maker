@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +50,10 @@ public class Playlist {
 
     public List<Song> getSongList() {
         return songList;
+    }
+
+    public JSONObject toJson() {
+        return null; //stub
     }
 
 }

@@ -1,26 +1,23 @@
 package persistence;
 
 import model.Playlist;
+import model.Song;
+
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+import java.io.IOException;
+
+// code based on JsonReaderTest in JsonSerializationDemo
 public class JsonReaderTest {
 
-
-    @Test
-    public void testConstructor() {
-        JsonReader testReader = new JsonReader("./data/testConstructorPlaylist.json");
-        assertEquals("./data/testConstructorFile.txt", testReader.getSource());
-    }
 
     @Test
     public void testReaderNoSuchFile() {
         JsonReader testReader = new JsonReader("./data/GhostFile.txt");
         try {
-            Playlist p = testReader.readPlaylist();
+            Playlist playlist = testReader.readPlaylist();
             fail("IOException should have been thrown!");
         } catch (IOException e) {
             // success
@@ -31,10 +28,27 @@ public class JsonReaderTest {
     public void testReaderEmptyPlaylist() {
         JsonReader testReader = new JsonReader("./data/testReaderEmptyPlaylist.json");
         try {
-            Playlist p = testReader.readPlaylist();
-            assertEquals(0, p.getPlaylistSize());
+            Playlist playlist = testReader.readPlaylist();
+            assertEquals("My Playlist", playlist.getPlaylistName());
+            assertEquals(0, playlist.getPlaylistSize());
         } catch (IOException e) {
             fail("IOException should not have been thrown!");
+        }
+    }
+
+    @Test
+    public void testReaderGeneralPlaylist() {
+        JsonReader testReader = new JsonReader("./data/testReaderGeneralPlaylist.json");
+        try {
+            Playlist playlist = testReader.readPlaylist();
+            assertEquals("My Playlist", playlist.getPlaylistName());
+            assertEquals(3, playlist.getPlaylistSize());
+            List<Song> songs = playlist.getSongList();
+            assertEquals("Yellow", songs.get(0).getTitle());
+            assertEquals("LOVE AGAIN", songs.get(1).getTitle());
+            assertEquals("foo", songs.get(2).getTitle());
+        } catch (IOException e) {
+            fail("IOException should not have been thrown");
         }
     }
 }
