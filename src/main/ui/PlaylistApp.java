@@ -1,8 +1,13 @@
 package ui;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import model.Playlist;
 import model.Song;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,9 +15,14 @@ import java.util.Scanner;
 public class PlaylistApp {
     private Playlist playlist;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_FILE = "./data/MyPlaylist.json";
 
     // EFFECTS: runs the playlist application
     public PlaylistApp() {
+        jsonWriter = new JsonWriter(JSON_FILE);
+        jsonReader = new JsonReader(JSON_FILE);
         runPlaylist();
     }
 
@@ -78,7 +88,7 @@ public class PlaylistApp {
             homePageOptions(playlistName);
             command = input.next();
 
-            if (command.equals("4")) {
+            if (command.equals("6")) {
                 runOn = false;
             } else if (command.equals("1")) {
                 titleOption();
@@ -86,6 +96,10 @@ public class PlaylistApp {
                 removeOption(playlistName);
             } else if (command.equals("3")) {
                 displayPlaylist(playlistName);
+            } else if (command.equals("4")) {
+                savePlaylist();
+            } else if (command.equals("5")) {
+                loadPlaylist();
             } else {
                 System.out.println("Selection not valid.");
             }
@@ -111,7 +125,11 @@ public class PlaylistApp {
         System.out.println("\nEnter 1 to Add a Song");
         System.out.println("Enter 2 to Remove a Song");
         System.out.println("Enter 3 to View Playlist");
-        System.out.println("Enter 4 to Quit Application\n");
+        //TODO
+        System.out.println("Enter 4 to Save Playlist");
+        //TODO
+        System.out.println("Enter 5 to Load Playlist");
+        System.out.println("Enter 6 to Quit Application\n");
 
     }
 
@@ -171,5 +189,34 @@ public class PlaylistApp {
         displayPlaylist(playlistName);
 
     }
+
+    // EFFECTS: saves playlist to file
+    private void savePlaylist() {
+        try {
+            jsonWriter.openWriter();
+            jsonWriter.writePlaylist(playlist);
+            jsonWriter.closeWriter();
+
+            System.out.println(playlist.getPlaylistName() + " saved to " + JSON_FILE);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save playlist to " + JSON_FILE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads playlist from file
+    private void loadPlaylist() {
+        try {
+            playlist = jsonReader.readPlaylist();
+
+            System.out.println(playlist.getPlaylistName() + " loaded from " + JSON_FILE);
+
+        } catch (IOException e) {
+            System.out.println("Unable to load playlist from " + JSON_FILE);
+        }
+
+    }
+
 
 }

@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a song having a title
-public class Song {
+public class Song implements Writable {
     private String title;
 
     // REQUIRES: title has a non-zero length
@@ -15,6 +18,12 @@ public class Song {
         return title;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        return json;
+    }
 }
 
 

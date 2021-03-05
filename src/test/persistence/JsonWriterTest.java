@@ -46,6 +46,9 @@ public class JsonWriterTest {
     public void testWriterGeneralPlaylist() {
         try {
             Playlist playlist = new Playlist("My Playlist");
+            playlist.addSong(new Song("Yellow"));
+            playlist.addSong(new Song("LOVE AGAIN"));
+            playlist.addSong(new Song("foo"));
             JsonWriter testWriter = new JsonWriter("./data/testWriterGeneralPlaylist.json");
             testWriter.openWriter();
             testWriter.writePlaylist(playlist);

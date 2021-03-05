@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 public class JsonWriter {
     private PrintWriter writer;
     private String destination;
+    private static final int TAB = 3;
 
     // EFFECTS: constructs a writer that will write to destination file
     public JsonWriter(String destination) {
@@ -22,7 +23,7 @@ public class JsonWriter {
     // EFFECTS: writes a JSON representation of a playlist to file
     public void writePlaylist(Playlist playlist) {
         JSONObject json = playlist.toJson();
-        saveToFile(json.toString());
+        saveToFile(json.toString(TAB));
 
     }
 
