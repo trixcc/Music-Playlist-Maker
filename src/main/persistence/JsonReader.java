@@ -55,16 +55,16 @@ public class JsonReader {
     // EFFECTS: parses songs from jsonObject and adds them to playlist
     private void addSongs(Playlist playlist, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("songs");
-        for (Object json: jsonArray) {
-            JSONObject nextSong = (JSONObject) json;
+        for (Object song: jsonArray) {
+            Object nextSong = song;
             addSong(playlist, nextSong);
         }
     }
 
     // MODIFIES: playlist
     // EFFECTS: parses song from jsonObject and adds it to playlist
-    private void addSong(Playlist playlist, JSONObject jsonObject) {
-        String title = jsonObject.getString("title");
+    private void addSong(Playlist playlist, Object nextSong) {
+        String title = nextSong.toString();
         Song song = new Song(title);
         playlist.addSong(song);
     }

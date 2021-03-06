@@ -38,12 +38,15 @@ public class PlaylistApp {
             startMenu();
             command = input.next();
 
-            if (command.equals("2")) {
+            if (command.equals("3")) {
                 runOn = false;
                 System.out.println("\nSee you later!");
             } else if (command.equals("1")) {
                 runOn = false;
                 beginPlaylistMaking();
+            } else if (command.equals("2")) {
+                runOn = false;
+                loadPlaylist();
             } else {
                 System.out.println("\nSelection not valid.");
             }
@@ -53,9 +56,10 @@ public class PlaylistApp {
 
     // EFFECTS: displays the starting menu to the user
     private void startMenu() {
-        System.out.println("\nHello! Would you like to make a new playlist?\n");
-        System.out.println("Enter 1 for YES");
-        System.out.println("Enter 2 for NO\n");
+        System.out.println("Hello!\n");
+        System.out.println("Enter 1 to Make A New Playlist");
+        System.out.println("Enter 2 to Load Playlist From File\n");
+        System.out.println("Enter 3 to Quit Application\n");
 
     }
 
@@ -88,18 +92,16 @@ public class PlaylistApp {
             homePageOptions(playlistName);
             command = input.next();
 
-            if (command.equals("6")) {
+            if (command.equals("5")) {
                 runOn = false;
             } else if (command.equals("1")) {
                 titleOption();
             } else if (command.equals("2")) {
                 removeOption(playlistName);
             } else if (command.equals("3")) {
-                displayPlaylist(playlistName);
+                displayPlaylist();
             } else if (command.equals("4")) {
                 savePlaylist();
-            } else if (command.equals("5")) {
-                loadPlaylist();
             } else {
                 System.out.println("Selection not valid.");
             }
@@ -109,27 +111,13 @@ public class PlaylistApp {
 
     }
 
-    // EFFECTS: displays the user's playlist
-    // for loop code block based on code from stack overflow
-    private void displayPlaylist(String playlistName) {
-        System.out.println("\nYOUR PLAYLIST: " + playlistName);
-        System.out.println("[ " + (playlist.getPlaylistSize()) + " song(s) ]\n");
-
-        for (Song song : playlist.getSongList()) {
-            System.out.println(song.getTitle());
-        }
-    }
-
     // EFFECTS: displays the homepage's options
     private void homePageOptions(String playlistName) {
         System.out.println("\nEnter 1 to Add a Song");
         System.out.println("Enter 2 to Remove a Song");
         System.out.println("Enter 3 to View Playlist");
-        //TODO
         System.out.println("Enter 4 to Save Playlist");
-        //TODO
-        System.out.println("Enter 5 to Load Playlist");
-        System.out.println("Enter 6 to Quit Application\n");
+        System.out.println("Enter 5 to Quit Application\n");
 
     }
 
@@ -182,12 +170,24 @@ public class PlaylistApp {
                 }
 
                 playlist.removeSong(toRemove);
+                System.out.println("\n\tSong removed.");
 
             }
         }
 
-        displayPlaylist(playlistName);
+        displayPlaylist();
 
+    }
+
+    // EFFECTS: displays the user's playlist
+    // for loop code block based on code from stack overflow
+    private void displayPlaylist() {
+        System.out.println("\nYOUR PLAYLIST: " + playlist.getPlaylistName());
+        System.out.println("[ " + (playlist.getPlaylistSize()) + " song(s) ]\n");
+
+        for (Song song : playlist.getSongList()) {
+            System.out.println(song.getTitle());
+        }
     }
 
     // EFFECTS: saves playlist to file
@@ -215,6 +215,8 @@ public class PlaylistApp {
         } catch (IOException e) {
             System.out.println("Unable to load playlist from " + JSON_FILE);
         }
+
+        homePage(playlist.getPlaylistName());
 
     }
 

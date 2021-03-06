@@ -1,15 +1,4 @@
 {
-  "songs": [
-    {
-      "title": "Yellow"
-    },
-    {
-      "title": "LOVE AGAIN"
-    },
-    {
-      "title": "foo"
-    }
-  ],
-
+  "songs": ["Yellow", "LOVE AGAIN", "foo"],
   "playlist name": "My Playlist"
 }
