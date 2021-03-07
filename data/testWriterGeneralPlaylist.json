@@ -1,8 +1,8 @@
 {
    "songs": [
-      {"title": "Yellow"},
-      {"title": "LOVE AGAIN"},
-      {"title": "foo"}
+      "Yellow",
+      "LOVE AGAIN",
+      "foo"
    ],
    "playlist name": "My Playlist"
 }

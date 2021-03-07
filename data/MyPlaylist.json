@@ -1,7 +1,10 @@
 {
    "songs": [
-      {"title": "lover boy"},
-      {"title": "sing to me"}
+      "pikachu",
+      "charizard",
+      "bulbasaur",
+      "jigglypuff",
+      "ash ketchum"
    ],
-   "playlist name": "roadtrip"
+   "playlist name": "pokemon"
 }

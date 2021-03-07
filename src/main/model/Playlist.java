@@ -2,13 +2,12 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a playlist having a name and size
-public class Playlist implements Writable {
+public class Playlist {
     private String name;
     private int size;
     private List<Song> songList;
@@ -54,7 +53,7 @@ public class Playlist implements Writable {
         return songList;
     }
 
-    @Override
+    // EFFECTS: returns this as a JSON Object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("playlist name", name);
@@ -62,12 +61,12 @@ public class Playlist implements Writable {
         return json;
     }
 
-    // EFFECTS: returns songs from this playlist as a JSON Array
+    // EFFECTS: returns songs from playlist as a JSON Array
     public JSONArray songsToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Song s: songList) {
-            jsonArray.put(s.toJson());
+            jsonArray.put(s.getTitle());
         }
 
         return jsonArray;

@@ -57,9 +57,9 @@ public class PlaylistApp {
     // EFFECTS: displays the starting menu to the user
     private void startMenu() {
         System.out.println("Hello!\n");
-        System.out.println("Enter 1 to Make A New Playlist");
-        System.out.println("Enter 2 to Load Playlist From File\n");
-        System.out.println("Enter 3 to Quit Application\n");
+        System.out.println("Enter 1 to MAKE A NEW PLAYLIST");
+        System.out.println("Enter 2 to LOAD PLAYLIST FROM FILE");
+        System.out.println("Enter 3 to QUIT APPLICATION\n");
 
     }
 
@@ -76,20 +76,20 @@ public class PlaylistApp {
 
             if (command.length() > 0) {
                 runOn = false;
-                homePage(command);
+                playlist = new Playlist(command);
+                homePage();
             }
         }
     }
 
     // MODIFIES: this
     // EFFECTS: displays a homepage of the playlist application and processes user input
-    private void homePage(String playlistName) {
+    private void homePage() {
         boolean runOn = true;
         String command;
-        playlist = new Playlist(playlistName);
 
         while (runOn) {
-            homePageOptions(playlistName);
+            homePageOptions();
             command = input.next();
 
             if (command.equals("5")) {
@@ -97,7 +97,7 @@ public class PlaylistApp {
             } else if (command.equals("1")) {
                 titleOption();
             } else if (command.equals("2")) {
-                removeOption(playlistName);
+                removeOption();
             } else if (command.equals("3")) {
                 displayPlaylist();
             } else if (command.equals("4")) {
@@ -112,12 +112,12 @@ public class PlaylistApp {
     }
 
     // EFFECTS: displays the homepage's options
-    private void homePageOptions(String playlistName) {
-        System.out.println("\nEnter 1 to Add a Song");
-        System.out.println("Enter 2 to Remove a Song");
-        System.out.println("Enter 3 to View Playlist");
-        System.out.println("Enter 4 to Save Playlist");
-        System.out.println("Enter 5 to Quit Application\n");
+    private void homePageOptions() {
+        System.out.println("\nEnter 1 to ADD A SONG");
+        System.out.println("Enter 2 to REMOVE A SONG");
+        System.out.println("Enter 3 to VIEW PLAYLIST");
+        System.out.println("Enter 4 to SAVE PLAYLIST");
+        System.out.println("Enter 5 to QUIT APPLICATION\n");
 
     }
 
@@ -128,14 +128,20 @@ public class PlaylistApp {
         boolean runOn = true;
         String command = "";
 
-        System.out.println("\nEnter title of song to add:\n");
+        System.out.println("\nEnter title of song to add:");
+        System.out.println("Enter 0 to cancel.");
 
         while (runOn) {
             command = input.nextLine();
 
-            if (command.length() > 0) {
+            if (command.equals("0")) {
                 runOn = false;
+            } else {
+                if (command.length() > 0) {
+                    runOn = false;
+                }
             }
+
         }
 
         newSong = new Song(command);
@@ -147,14 +153,14 @@ public class PlaylistApp {
     // MODIFIES: this
     // EFFECTS: prompts user to enter a title to remove from playlist or to cancel,
     //          processes the user's input
-    private void removeOption(String playlistName) {
+    private void removeOption() {
         boolean runOn = true;
         String command;
         List<Song> songList = playlist.getSongList();
         Song toRemove = new Song("");
 
         System.out.println("\nEnter title of song to remove:");
-        System.out.println("Enter 0 to cancel.\n");
+        System.out.println("Enter 0 to cancel.");
 
         while (runOn) {
             command = input.nextLine();
@@ -170,12 +176,11 @@ public class PlaylistApp {
                 }
 
                 playlist.removeSong(toRemove);
-                System.out.println("\n\tSong removed.");
 
             }
         }
 
-        displayPlaylist();
+        System.out.println("\n\tSong removed.");
 
     }
 
@@ -185,7 +190,9 @@ public class PlaylistApp {
         System.out.println("\nYOUR PLAYLIST: " + playlist.getPlaylistName());
         System.out.println("[ " + (playlist.getPlaylistSize()) + " song(s) ]\n");
 
-        for (Song song : playlist.getSongList()) {
+        List<Song> songs = playlist.getSongList();
+
+        for (Song song : songs) {
             System.out.println(song.getTitle());
         }
     }
@@ -216,7 +223,7 @@ public class PlaylistApp {
             System.out.println("Unable to load playlist from " + JSON_FILE);
         }
 
-        homePage(playlist.getPlaylistName());
+        homePage();
 
     }
 

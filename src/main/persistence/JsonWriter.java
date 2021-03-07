@@ -43,6 +43,6 @@ public class JsonWriter {
     // MODIFIES: this
     // EFFECTS: prints out json
     private void saveToFile(String json) {
-        writer.println(json);
+        writer.print(json);
     }
 }
