@@ -4,7 +4,6 @@ import model.Playlist;
 import model.Song;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import ui.PlaylistApp;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
