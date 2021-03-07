@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents a playlist having a name and size
+// Represents a playlist having a name, size, and empty list of songs
 public class Playlist {
     private String name;
     private int size;
@@ -53,7 +53,7 @@ public class Playlist {
         return songList;
     }
 
-    // EFFECTS: returns this as a JSON Object
+    // EFFECTS: returns playlist as a JSON Object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("playlist name", name);
@@ -61,11 +61,11 @@ public class Playlist {
         return json;
     }
 
-    // EFFECTS: returns songs from playlist as a JSON Array
+    // EFFECTS: returns songs in playlist as a JSON Array
     public JSONArray songsToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Song s: songList) {
+        for (Song s : songList) {
             jsonArray.put(s.getTitle());
         }
 

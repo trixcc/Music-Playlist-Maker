@@ -20,10 +20,10 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes a JSON representation of a playlist to file
+    // EFFECTS: writes a JSON representation of playlist to file
     public void writePlaylist(Playlist playlist) {
-        JSONObject json = playlist.toJson();
-        saveToFile(json.toString(TAB));
+        JSONObject jsonObject = playlist.toJson();
+        saveToFile(jsonObject.toString(TAB));
 
     }
 
@@ -41,7 +41,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: prints out json
+    // EFFECTS: writes json to file
     private void saveToFile(String json) {
         writer.print(json);
     }
