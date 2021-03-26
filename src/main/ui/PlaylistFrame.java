@@ -15,12 +15,16 @@ public class PlaylistFrame extends JFrame {
         homePagePanel = new HomePagePanel();
         setContentPane(homePagePanel);
 
-        ButtonOptions buttonOptions = new ButtonOptions(homePagePanel, this);
-        buttonOptions.setOpaque(true);
-
-        Container pane = getContentPane();
-        pane.add(buttonOptions, BorderLayout.PAGE_END);
-        setButtonOptions(buttonOptions);
+        JComponent playlistSongList = new SongListUI();
+        playlistSongList.setOpaque(true);
+        add(playlistSongList);
+//
+//        ButtonOptions buttonOptions = new ButtonOptions(homePagePanel, this);
+//        buttonOptions.setOpaque(true);
+//
+//        Container pane = getContentPane();
+//        pane.add(buttonOptions, BorderLayout.PAGE_END);
+//        setButtonOptions(buttonOptions);
 
         pack();
         setVisible(true);
