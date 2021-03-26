@@ -9,10 +9,12 @@ public class HomePagePanel extends JPanel {
     private static final int WIDTH = 200;
     private static final int HEIGHT = 500;
 
+    private MoreOptionsUI moreOptionsUI;
+
 //    JLabel numOfSongs;
 
     // EFFECTS: sets up the home page panel
-    public HomePagePanel() {
+    public HomePagePanel(PlaylistMakerFrame playlistMakerFrame) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.LIGHT_GRAY);
         setLayout(new BorderLayout());
@@ -20,6 +22,11 @@ public class HomePagePanel extends JPanel {
 //        numOfSongs = new JLabel(" SONG(S)");
 //        add(numOfSongs, BorderLayout.PAGE_START);
 
-        add(new MoreOptionsUI(), BorderLayout.PAGE_END);
+        moreOptionsUI = new MoreOptionsUI(playlistMakerFrame);
+        add(moreOptionsUI, BorderLayout.PAGE_END);
     }
+
+//    public MoreOptionsUI getMoreOptionsUI() {
+//        return moreOptionsUI;
+//    }
 }

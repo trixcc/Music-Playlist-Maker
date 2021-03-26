@@ -1,9 +1,15 @@
 package ui;
 
+import model.Playlist;
+import model.Song;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 // Represents a panel with options to save and load a playlist
 // code based on ButtonDemo.java on Oracle
@@ -14,9 +20,17 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
     protected JButton loadButton;
     protected JButton saveButton;
 
+    private PlaylistMakerFrame playlistMakerFrame;
+
+    private static final String JSON_FILE = "./data/MyPlaylist.json";
+
+    private Playlist playlist;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
     // EFFECTS: sets up the options panel,
     //          displays save and load buttons
-    public MoreOptionsUI() {
+    public MoreOptionsUI(PlaylistMakerFrame playlistMakerFrame) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
 
@@ -32,6 +46,12 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
         add(loadButton);
         add(saveButton);
 
+//        createPlaylist(playlistMakerFrame);
+        this.playlistMakerFrame = playlistMakerFrame;
+        playlist = new Playlist("test");
+        jsonWriter = new JsonWriter(JSON_FILE);
+        jsonReader = new JsonReader(JSON_FILE);
+
     }
 
     @Override
@@ -43,15 +63,73 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
         }
     }
 
+//    public Playlist createPlaylist(PlaylistMakerFrame playlistMakerFrame) {
+//        SongListUI songListUI = playlistMakerFrame.getSongListUI();
+//        JList songs = songListUI.getSongList();
+//        Object songObject;
+//
+//        playlist = new Playlist("test");
+//
+//        for (int i = 0; i < songs.getModel().getSize(); i++) {
+//            songObject = songs.getModel().getElementAt(i);
+//            Song newSong = new Song(songObject.toString());
+//            playlist.addSong(newSong);
+//        }
+//
+//        return playlist;
+//
+//    }
+
+//    public PlaylistMakerFrame getPlaylistMakerFrame() {
+//        return playlistMakerFrame;
+//    }
+//
+//    public void setPlaylistMakerFrame(PlaylistMakerFrame playlistMakerFrame) {
+//        if (getPlaylistMakerFrame() != playlistMakerFrame) {
+//            this.playlistMakerFrame = playlistMakerFrame;
+//            playlistMakerFrame.setMoreOptionsUI(this);
+//        }
+//    }
+
     // MODIFIES: this
     // EFFECTS: loads playlist from file
     public void loadPlaylist() {
+        try {
+            playlist = jsonReader.readPlaylist();
+            System.out.println(playlist.getPlaylistName() + " loaded from " + JSON_FILE);
+
+        } catch (IOException e) {
+            System.out.println("Unable to load playlist from " + JSON_FILE);
+        }
 
     }
 
     // MODIFIES: this
     // EFFECTS: saves playlist to file
     public void savePlaylist() {
+        createPlaylist();
 
+        try {
+            jsonWriter.openWriter();
+            jsonWriter.writePlaylist(playlist);
+            jsonWriter.closeWriter();
+            System.out.println(playlist.getPlaylistName() + " saved to " + JSON_FILE);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save playlist to " + JSON_FILE);
+        }
+
+    }
+
+    public void createPlaylist() {
+        SongListUI songListUI = playlistMakerFrame.getSongListUI();
+        JList songs = songListUI.getSongList();
+        Object songObject;
+
+        for (int i = 0; i < songs.getModel().getSize(); i++) {
+            songObject = songs.getModel().getElementAt(i);
+            Song newSong = new Song(songObject.toString());
+            playlist.addSong(newSong);
+        }
     }
 }

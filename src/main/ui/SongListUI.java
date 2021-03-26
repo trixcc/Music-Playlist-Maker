@@ -19,7 +19,7 @@ public class SongListUI extends JPanel implements ListSelectionListener {
     private JTextField songTitle;
 
     // EFFECTS: sets up the song list panel,
-    //          creates a separate panel where user can type in a song title to add or remove
+    //          creates a separate panel where user can add and remove songs
     public SongListUI() {
         super(new BorderLayout());
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -87,8 +87,8 @@ public class SongListUI extends JPanel implements ListSelectionListener {
         }
     }
 
-//    public JList getSongList() {
-//        return songList;
-//    }
+    public JList getSongList() {
+        return songList;
+    }
 
 }
