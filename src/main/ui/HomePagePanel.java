@@ -3,28 +3,20 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class HomePagePanel extends JPanel {
-    private static final int WIDTH = 150;
+    private static final int WIDTH = 200;
     private static final int HEIGHT = 500;
-    private ButtonOptions buttonOptions;
+
+//    JLabel numOfSongs;
 
     public HomePagePanel() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        setBackground(Color.BLUE);
+        setBackground(Color.LIGHT_GRAY);
         setLayout(new BorderLayout());
-        setButtonOptions(buttonOptions);
 
-    }
+//        numOfSongs = new JLabel(" SONG(S)");
+//        add(numOfSongs, BorderLayout.PAGE_START);
 
-    public ButtonOptions getButtonOptions() {
-        return buttonOptions;
-    }
-
-    public void setButtonOptions(ButtonOptions buttonOptions) {
-        if (getButtonOptions() != buttonOptions) {
-            this.buttonOptions = buttonOptions;
-            buttonOptions.setHomePagePanel(this);
-        }
+        add(new MoreOptionsUI(), BorderLayout.PAGE_END);
     }
 }

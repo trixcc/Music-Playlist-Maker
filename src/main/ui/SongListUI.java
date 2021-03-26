@@ -7,16 +7,16 @@ import java.awt.*;
 
 // code based on ListDemo.java on Oracle
 public class SongListUI extends JPanel implements ListSelectionListener {
-    private static final int WIDTH = 250;
+    private static final int WIDTH = 450;
     private static final int HEIGHT = 500;
 
     private JList songList;
     private DefaultListModel listModel;
 
     private JButton addSongButton;
+    private JButton removeSongButton;
     private JTextField songTitle;
 
-    @SuppressWarnings("checkstyle:MethodLength")
     public SongListUI() {
         super(new BorderLayout());
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -31,14 +31,15 @@ public class SongListUI extends JPanel implements ListSelectionListener {
         JScrollPane songListScrollPane = new JScrollPane(songList);
 
         createAddSongButton();
+        createRemoveSongButton();
 
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-//        buttonPane.add(Box.createHorizontalStrut(5));
-//        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
         buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(songTitle);
         buttonPane.add(addSongButton);
+        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
+        buttonPane.add(removeSongButton);
         buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
         add(songListScrollPane, BorderLayout.CENTER);
@@ -57,7 +58,14 @@ public class SongListUI extends JPanel implements ListSelectionListener {
         songTitle.addActionListener(addListener);
         songTitle.getDocument().addDocumentListener(addListener);
 //        String title = listModel.getElementAt(songList.getSelectedIndex()).toString();
+    }
 
+    public void createRemoveSongButton() {
+        removeSongButton = new JButton("REMOVE SONG");
+        removeSongButton.setActionCommand("remove");
+
+        RemoveListener removeListener = new RemoveListener(removeSongButton, songList, listModel);
+        removeSongButton.addActionListener(removeListener);
     }
 
 
@@ -71,4 +79,9 @@ public class SongListUI extends JPanel implements ListSelectionListener {
             }
         }
     }
+
+//    public JList getSongList() {
+//        return songList;
+//    }
+
 }

@@ -84,4 +84,5 @@ public class AddListener implements ActionListener, DocumentListener {
             button.setEnabled(true);
         }
     }
+
 }
