@@ -5,7 +5,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 
+// code based on ListDemo.java on Oracle
 public class SongListUI extends JPanel implements ListSelectionListener {
+    private static final int WIDTH = 250;
+    private static final int HEIGHT = 500;
 
     private JList songList;
     private DefaultListModel listModel;
@@ -16,6 +19,7 @@ public class SongListUI extends JPanel implements ListSelectionListener {
     @SuppressWarnings("checkstyle:MethodLength")
     public SongListUI() {
         super(new BorderLayout());
+        setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
         listModel = new DefaultListModel();
 
@@ -30,8 +34,8 @@ public class SongListUI extends JPanel implements ListSelectionListener {
 
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-        buttonPane.add(Box.createHorizontalStrut(5));
-        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
+//        buttonPane.add(Box.createHorizontalStrut(5));
+//        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
         buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(songTitle);
         buttonPane.add(addSongButton);

@@ -6,18 +6,23 @@ import java.awt.*;
 public class PlaylistFrame extends JFrame {
     private HomePagePanel homePagePanel;
     private ButtonOptions buttonOptions;
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 500;
 
 
     public PlaylistFrame() {
         super("Playlist Maker");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setResizable(false);
 
         homePagePanel = new HomePagePanel();
-        setContentPane(homePagePanel);
+        add(homePagePanel, BorderLayout.EAST);
 
         JComponent playlistSongList = new SongListUI();
         playlistSongList.setOpaque(true);
-        add(playlistSongList);
+        add(playlistSongList, BorderLayout.WEST);
 //
 //        ButtonOptions buttonOptions = new ButtonOptions(homePagePanel, this);
 //        buttonOptions.setOpaque(true);

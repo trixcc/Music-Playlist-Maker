@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// code based on ListDemo.java on Oracle
 public class AddListener implements ActionListener, DocumentListener {
     private boolean alreadyEnabled = false;
     private JButton button;
