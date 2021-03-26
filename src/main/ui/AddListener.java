@@ -1,11 +1,15 @@
 package ui;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 // code based on ListDemo.java on Oracle
 public class AddListener implements ActionListener, DocumentListener {
@@ -41,6 +45,7 @@ public class AddListener implements ActionListener, DocumentListener {
         }
 
         listModel.insertElementAt(songTitle.getText(), index);
+        playAddSound("./data/button-09.wav");
 
         songTitle.requestFocusInWindow();
         songTitle.setText("");
@@ -83,6 +88,19 @@ public class AddListener implements ActionListener, DocumentListener {
         if (!alreadyEnabled) {
             button.setEnabled(true);
         }
+    }
+
+    public void playAddSound(String soundName) {
+        AudioInputStream audioInputStream;
+        try {
+            audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (Exception e) {
+            System.out.println("Could not play sound.");
+        }
+
     }
 
 }

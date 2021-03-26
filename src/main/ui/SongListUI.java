@@ -5,6 +5,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 
+// Represents a panel in which a list of songs added to the playlist is displayed
 // code based on ListDemo.java on Oracle
 public class SongListUI extends JPanel implements ListSelectionListener {
     private static final int WIDTH = 450;
@@ -17,6 +18,8 @@ public class SongListUI extends JPanel implements ListSelectionListener {
     private JButton removeSongButton;
     private JTextField songTitle;
 
+    // EFFECTS: sets up the song list panel,
+    //          creates a separate panel where user can type in a song title to add or remove
     public SongListUI() {
         super(new BorderLayout());
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -46,6 +49,8 @@ public class SongListUI extends JPanel implements ListSelectionListener {
         add(buttonPane, BorderLayout.PAGE_END);
     }
 
+    // EFFECTS: creates a button to add a song,
+    //          sets up an Action Listener for the button
     public void createAddSongButton() {
         addSongButton = new JButton("ADD SONG");
         songTitle = new JTextField(10);
@@ -53,28 +58,31 @@ public class SongListUI extends JPanel implements ListSelectionListener {
         AddListener addListener = new AddListener(addSongButton, songTitle, songList, listModel);
 
         addSongButton.setActionCommand("add");
-        addSongButton.addActionListener(addListener);
         addSongButton.setEnabled(false);
+        addSongButton.addActionListener(addListener);
 
         songTitle.addActionListener(addListener);
         songTitle.getDocument().addDocumentListener(addListener);
 //        String title = listModel.getElementAt(songList.getSelectedIndex()).toString();
     }
 
+    // EFFECTS: creates a button to remove a song,
+    //          sets up an Action Listener for the button
     public void createRemoveSongButton() {
         removeSongButton = new JButton("REMOVE SONG");
         removeSongButton.setActionCommand("remove");
+        removeSongButton.setEnabled(false);
         removeSongButton.addActionListener(new RemoveListener(removeSongButton, songList, listModel));
     }
 
-
+    // EFFECTS: enables/disables remove song button
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
             if (songList.getSelectedIndex() == -1) {
-                addSongButton.setEnabled(false);
+                removeSongButton.setEnabled(false);
             } else {
-                addSongButton.setEnabled(true);
+                removeSongButton.setEnabled(true);
             }
         }
     }

@@ -1,12 +1,15 @@
 package ui;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 // code based on ListDemo.java on Oracle
 public class RemoveListener implements ActionListener {
@@ -25,7 +28,7 @@ public class RemoveListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int index = songList.getSelectedIndex();
         listModel.remove(index);
-        playSound("button-3.wav");
+        playRemoveSound("./data/button-3.wav");
 
         int size = listModel.getSize();
         if (size == 0) {
@@ -41,9 +44,7 @@ public class RemoveListener implements ActionListener {
 
     }
 
-    // code based on answer on stackoverflow
-    // link: https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
-    public void playSound(String soundName) {
+    public void playRemoveSound(String soundName) {
         AudioInputStream audioInputStream;
         try {
             audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
@@ -53,5 +54,6 @@ public class RemoveListener implements ActionListener {
         } catch (Exception e) {
             System.out.println("Could not play sound.");
         }
+
     }
 }

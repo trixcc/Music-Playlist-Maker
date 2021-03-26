@@ -3,12 +3,14 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents the main window of the Playlist Maker application
 public class PlaylistMakerFrame extends JFrame {
     private HomePagePanel homePagePanel;
     private static final int WIDTH = 650;
     private static final int HEIGHT = 500;
 //    private JLabel numOfSongs;
 
+    // EFFECTS: sets up the main window of the Playlist Maker application
     public PlaylistMakerFrame() {
         super("Playlist Maker");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -32,8 +34,7 @@ public class PlaylistMakerFrame extends JFrame {
 
     }
 
-
-
+    // EFFECTS: starts the application
     public static void main(String[] args) {
         new PlaylistMakerFrame();
     }
