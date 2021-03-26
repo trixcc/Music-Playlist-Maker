@@ -15,7 +15,7 @@ public class PlaylistFrame extends JFrame {
         homePagePanel = new HomePagePanel();
         setContentPane(homePagePanel);
 
-        ButtonOptions buttonOptions = new ButtonOptions();
+        ButtonOptions buttonOptions = new ButtonOptions(homePagePanel, this);
         buttonOptions.setOpaque(true);
 
         Container pane = getContentPane();

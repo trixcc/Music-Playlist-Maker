@@ -10,9 +10,13 @@ public class ButtonOptions extends JPanel implements ActionListener {
     protected JButton b2;
     protected JButton b3;
     private PlaylistFrame playlistFrame;
+    private HomePagePanel homePagePanel;
 
-    public ButtonOptions() {
+    public ButtonOptions(HomePagePanel homePagePanel, PlaylistFrame playlistFrame) {
+        this.playlistFrame = playlistFrame;
         setPlaylistFrame(playlistFrame);
+        this.homePagePanel = homePagePanel;
+        setHomePagePanel(homePagePanel);
 
         b1 = new JButton("ADD SONG");
         b1.setActionCommand("add");
@@ -44,16 +48,30 @@ public class ButtonOptions extends JPanel implements ActionListener {
         }
     }
 
+    public HomePagePanel getHomePagePanel() {
+        return homePagePanel;
+    }
+
+    public void setHomePagePanel(HomePagePanel homePagePanel) {
+        if (getHomePagePanel() != homePagePanel) {
+            this.homePagePanel = homePagePanel;
+            homePagePanel.setButtonOptions(this);
+        }
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        JPanel playlist = new JPanel();
+        playlist.setPreferredSize(new Dimension(100,100));
+        playlist.setLayout(new BorderLayout());
         String command;
         if ("add".equals(e.getActionCommand())) {
             command = JOptionPane.showInputDialog("Enter title of song to add:");
             if (createNewSong(command) != null) {
-                playlistFrame.add(createNewSong(command));
-                playlistFrame.revalidate();
-                playlistFrame.repaint();
+                playlist.add(createNewSong(command));
+                playlist.revalidate();
+                playlist.repaint();
             }
         } else if ("save".equals(e.getActionCommand())) {
             command = JOptionPane.showInputDialog("Saving Playlist...");
@@ -61,25 +79,16 @@ public class ButtonOptions extends JPanel implements ActionListener {
             command = JOptionPane.showInputDialog("Loading Playlist...");
         }
 
+        playlistFrame.add(playlist);
+
     }
 
-    public JPanel createNewSong(String songTitle) {
-        JList playlist;
-        DefaultListModel songs;
-        JPanel panel = null;
-        JScrollPane scrollPane;
-
+    public JLabel createNewSong(String songTitle) {
+        JLabel song = null;
         if (songTitle != null) {
-            songs = new DefaultListModel();
-            songs.addElement(songTitle);
-            playlist = new JList(songs);
-
-            scrollPane = new JScrollPane(playlist);
-            panel = new JPanel();
-            panel.add(scrollPane, BorderLayout.CENTER);
+            song = new JLabel(songTitle);
         }
-
-        return panel;
+        return song;
     }
 
 }
