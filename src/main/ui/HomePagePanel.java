@@ -11,8 +11,8 @@ public class HomePagePanel extends JPanel {
     public HomePagePanel() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLUE);
+        setLayout(new BorderLayout());
 
     }
-
 
 }

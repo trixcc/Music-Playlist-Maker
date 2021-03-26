@@ -11,7 +11,6 @@ public class PlaylistFrame extends JFrame {
     public PlaylistFrame() {
         super("Playlist Maker");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
 
         homePagePanel = new HomePagePanel();
         setContentPane(homePagePanel);

@@ -1,7 +1,5 @@
 package ui;
 
-import model.Playlist;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -52,9 +50,11 @@ public class ButtonOptions extends JPanel implements ActionListener {
         String command;
         if ("add".equals(e.getActionCommand())) {
             command = JOptionPane.showInputDialog("Enter title of song to add:");
-            playlistFrame.add(addSongToPlaylist(command));
-            playlistFrame.revalidate();
-            playlistFrame.repaint();
+            if (createNewSong(command) != null) {
+                playlistFrame.add(createNewSong(command));
+                playlistFrame.revalidate();
+                playlistFrame.repaint();
+            }
         } else if ("save".equals(e.getActionCommand())) {
             command = JOptionPane.showInputDialog("Saving Playlist...");
         } else {
@@ -63,15 +63,23 @@ public class ButtonOptions extends JPanel implements ActionListener {
 
     }
 
-    public JPanel addSongToPlaylist(String songTitle) {
-        JPanel playlist = new JPanel();
-        playlist.setBackground(Color.WHITE);
+    public JPanel createNewSong(String songTitle) {
+        JList playlist;
+        DefaultListModel songs;
+        JPanel panel = null;
+        JScrollPane scrollPane;
+
         if (songTitle != null) {
-            JLabel song = new JLabel(songTitle);
-            playlist.add(song);
+            songs = new DefaultListModel();
+            songs.addElement(songTitle);
+            playlist = new JList(songs);
+
+            scrollPane = new JScrollPane(playlist);
+            panel = new JPanel();
+            panel.add(scrollPane, BorderLayout.CENTER);
         }
 
-        return playlist;
+        return panel;
     }
 
 }
