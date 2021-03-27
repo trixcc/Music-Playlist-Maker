@@ -1,15 +1,10 @@
 package ui;
 
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 
 // code based on ListDemo.java on Oracle
 public class RemoveListener implements ActionListener {

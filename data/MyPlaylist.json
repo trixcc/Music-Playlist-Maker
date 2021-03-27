@@ -1,16 +1,4 @@
 {
-   "songs": [
-      "red",
-      "orange",
-      "yellow",
-      "red",
-      "orange",
-      "yellow",
-      "green",
-      "blue",
-      "indigo",
-      "pink",
-      "magenta"
-   ],
+   "songs": ["Self Control"],
    "playlist name": "test"
 }

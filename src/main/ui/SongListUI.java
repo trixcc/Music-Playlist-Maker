@@ -9,7 +9,7 @@ import java.awt.*;
 // code based on ListDemo.java on Oracle
 public class SongListUI extends JPanel implements ListSelectionListener {
     private static final int WIDTH = 450;
-    private static final int HEIGHT = 500;
+    private static final int HEIGHT = 400;
 
     private JList songList;
     private DefaultListModel listModel;
@@ -52,7 +52,7 @@ public class SongListUI extends JPanel implements ListSelectionListener {
     // EFFECTS: creates a button to add a song,
     //          sets up an Action Listener for the button
     public void createAddSongButton() {
-        addSongButton = new JButton("ADD SONG");
+        addSongButton = new JButton("Add Song");
         songTitle = new JTextField(10);
 
         AddListener addListener = new AddListener(addSongButton, songTitle, songList, listModel);
@@ -69,7 +69,7 @@ public class SongListUI extends JPanel implements ListSelectionListener {
     // EFFECTS: creates a button to remove a song,
     //          sets up an Action Listener for the button
     public void createRemoveSongButton() {
-        removeSongButton = new JButton("REMOVE SONG");
+        removeSongButton = new JButton("Remove Song");
         removeSongButton.setActionCommand("remove");
         removeSongButton.setEnabled(false);
         removeSongButton.addActionListener(new RemoveListener(removeSongButton, songList, listModel));

@@ -73,18 +73,4 @@ public class Playlist {
         return jsonArray;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Playlist playlist = (Playlist) o;
-        return size == playlist.size &&
-                Objects.equals(name, playlist.name) &&
-                Objects.equals(songList, playlist.songList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, size, songList);
-    }
 }

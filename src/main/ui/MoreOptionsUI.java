@@ -16,7 +16,7 @@ import java.util.List;
 // code based on ButtonDemo.java on Oracle
 public class MoreOptionsUI extends JPanel implements ActionListener {
     private static final int WIDTH = 100;
-    private static final int HEIGHT = 70;
+    private static final int HEIGHT = 100;
 
     protected JButton loadButton;
     protected JButton saveButton;
@@ -33,12 +33,12 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
     //          displays save and load buttons
     public MoreOptionsUI(PlaylistMakerFrame playlistMakerFrame) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        setBackground(Color.BLACK);
+        setBackground(Color.LIGHT_GRAY);
 
-        loadButton = new JButton("LOAD PLAYLIST");
+        loadButton = new JButton("Load Playlist");
         loadButton.setActionCommand("load");
 
-        saveButton = new JButton("SAVE PLAYLIST");
+        saveButton = new JButton("Save Playlist");
         saveButton.setActionCommand("save");
 
         loadButton.addActionListener(this);
@@ -47,9 +47,7 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
         add(loadButton);
         add(saveButton);
 
-//        createPlaylist(playlistMakerFrame);
         this.playlistMakerFrame = playlistMakerFrame;
-        playlist = new Playlist("test");
         jsonWriter = new JsonWriter(JSON_FILE);
         jsonReader = new JsonReader(JSON_FILE);
 
@@ -63,34 +61,6 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
             savePlaylist();
         }
     }
-
-//    public Playlist createPlaylist(PlaylistMakerFrame playlistMakerFrame) {
-//        SongListUI songListUI = playlistMakerFrame.getSongListUI();
-//        JList songs = songListUI.getSongList();
-//        Object songObject;
-//
-//        playlist = new Playlist("test");
-//
-//        for (int i = 0; i < songs.getModel().getSize(); i++) {
-//            songObject = songs.getModel().getElementAt(i);
-//            Song newSong = new Song(songObject.toString());
-//            playlist.addSong(newSong);
-//        }
-//
-//        return playlist;
-//
-//    }
-
-//    public PlaylistMakerFrame getPlaylistMakerFrame() {
-//        return playlistMakerFrame;
-//    }
-//
-//    public void setPlaylistMakerFrame(PlaylistMakerFrame playlistMakerFrame) {
-//        if (getPlaylistMakerFrame() != playlistMakerFrame) {
-//            this.playlistMakerFrame = playlistMakerFrame;
-//            playlistMakerFrame.setMoreOptionsUI(this);
-//        }
-//    }
 
     // MODIFIES: this
     // EFFECTS: loads playlist from file
@@ -132,20 +102,16 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
     }
 
     public void createPlaylist() {
+        playlist = new Playlist("test");
         SongListUI songListUI = playlistMakerFrame.getSongListUI();
         JList songs = songListUI.getSongList();
         Object songObject;
-
-        //or use listModel?
 
         for (int i = 0; i < songs.getModel().getSize(); i++) {
             songObject = songs.getModel().getElementAt(i);
             Song newSong = new Song(songObject.toString());
             playlist.addSong(newSong);
-
-//            if (!playlist.getSongList().contains(newSong)) {
-//                playlist.addSong(newSong);
-//            }
         }
+
     }
 }
