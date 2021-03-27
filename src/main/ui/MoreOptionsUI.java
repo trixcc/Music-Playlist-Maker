@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.List;
 
 // Represents a panel with options to save and load a playlist
 // code based on ButtonDemo.java on Oracle
@@ -94,8 +95,17 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
     // MODIFIES: this
     // EFFECTS: loads playlist from file
     public void loadPlaylist() {
+        SongListUI songListUI = playlistMakerFrame.getSongListUI();
+
         try {
             playlist = jsonReader.readPlaylist();
+            List<Song> songs = playlist.getSongList();
+
+            for (Song s : songs) {
+                String songTitle = s.getTitle();
+                songListUI.getListModel().addElement(songTitle);
+            }
+
             System.out.println(playlist.getPlaylistName() + " loaded from " + JSON_FILE);
 
         } catch (IOException e) {
@@ -126,10 +136,16 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
         JList songs = songListUI.getSongList();
         Object songObject;
 
+        //or use listModel?
+
         for (int i = 0; i < songs.getModel().getSize(); i++) {
             songObject = songs.getModel().getElementAt(i);
             Song newSong = new Song(songObject.toString());
             playlist.addSong(newSong);
+
+//            if (!playlist.getSongList().contains(newSong)) {
+//                playlist.addSong(newSong);
+//            }
         }
     }
 }

@@ -91,4 +91,8 @@ public class SongListUI extends JPanel implements ListSelectionListener {
         return songList;
     }
 
+    public DefaultListModel getListModel() {
+        return listModel;
+    }
+
 }

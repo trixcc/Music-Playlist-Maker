@@ -1,8 +1,16 @@
 {
    "songs": [
-      "hello",
-      "hey",
-      "hi"
+      "red",
+      "orange",
+      "yellow",
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "blue",
+      "indigo",
+      "pink",
+      "magenta"
    ],
    "playlist name": "test"
 }

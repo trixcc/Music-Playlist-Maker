@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 // Represents a playlist having a name, size, and empty list of songs
 public class Playlist {
@@ -72,4 +73,18 @@ public class Playlist {
         return jsonArray;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Playlist playlist = (Playlist) o;
+        return size == playlist.size &&
+                Objects.equals(name, playlist.name) &&
+                Objects.equals(songList, playlist.songList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, size, songList);
+    }
 }
