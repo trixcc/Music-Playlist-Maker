@@ -76,10 +76,12 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
                 songListUI.getListModel().addElement(songTitle);
             }
 
-            System.out.println(playlist.getPlaylistName() + " loaded from " + JSON_FILE);
+            JOptionPane.showMessageDialog(playlistMakerFrame, "Playlist loaded from " + JSON_FILE,
+                    "Load Playlist Status", JOptionPane.PLAIN_MESSAGE);
 
         } catch (IOException e) {
-            System.out.println("Unable to load playlist from " + JSON_FILE);
+            JOptionPane.showMessageDialog(playlistMakerFrame, "Failed to load from " + JSON_FILE,
+                    "Load Playlist Status", JOptionPane.PLAIN_MESSAGE);
         }
 
     }
@@ -92,10 +94,13 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
             jsonWriter.openWriter();
             jsonWriter.writePlaylist(playlist);
             jsonWriter.closeWriter();
-            System.out.println(playlist.getPlaylistName() + " saved to " + JSON_FILE);
+
+            JOptionPane.showMessageDialog(playlistMakerFrame, "Playlist saved to " + JSON_FILE,
+                    "Save Playlist Status", JOptionPane.PLAIN_MESSAGE);
 
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to save playlist to " + JSON_FILE);
+            JOptionPane.showMessageDialog(playlistMakerFrame, "Failed to save to " + JSON_FILE,
+                    "Save Playlist Status", JOptionPane.PLAIN_MESSAGE);
         }
 
     }
