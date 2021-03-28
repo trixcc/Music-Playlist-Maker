@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+// Represent the Action Listener for the Add Song button in the SongListUI
 // code based on ListDemo.java on Oracle
 public class AddListener implements ActionListener, DocumentListener {
     private boolean alreadyEnabled = false;
@@ -19,6 +20,7 @@ public class AddListener implements ActionListener, DocumentListener {
     private JList songList;
     private DefaultListModel listModel;
 
+    // EFFECTS: initializes the fields of the class
     public AddListener(JButton button, JTextField songTitle, JList songList, DefaultListModel listModel) {
         this.button = button;
         this.songTitle = songTitle;
@@ -26,6 +28,8 @@ public class AddListener implements ActionListener, DocumentListener {
         this.listModel = listModel;
     }
 
+    // MODIFIES: songList
+    // EFFECTS: adds a song title at the selected index of the song list and plays a sound
     @Override
     public void actionPerformed(ActionEvent e) {
         String title = songTitle.getText();
@@ -54,20 +58,24 @@ public class AddListener implements ActionListener, DocumentListener {
         songList.ensureIndexIsVisible(index);
     }
 
+    // EFFECTS: returns true if listModel contains given song title
     protected boolean alreadyInList(String title) {
         return listModel.contains(title);
     }
 
+    // EFFECTS: see super class, enables add song button
     @Override
     public void insertUpdate(DocumentEvent e) {
         enableButton();
     }
 
+    // EFFECTS: see superclass
     @Override
     public void removeUpdate(DocumentEvent e) {
         handleEmptyTextField(e);
     }
 
+    // EFFECTS: disables add song button if text field is empty
     private boolean handleEmptyTextField(DocumentEvent e) {
         if (e.getDocument().getLength() <= 0) {
             button.setEnabled(false);
@@ -77,6 +85,7 @@ public class AddListener implements ActionListener, DocumentListener {
         return false;
     }
 
+    // EFFECTS: see superclass, enables add song button if text field is not empty
     @Override
     public void changedUpdate(DocumentEvent e) {
         if (!handleEmptyTextField(e)) {
@@ -84,12 +93,14 @@ public class AddListener implements ActionListener, DocumentListener {
         }
     }
 
+    // EFFECTS: enables add song button
     private void enableButton() {
         if (!alreadyEnabled) {
             button.setEnabled(true);
         }
     }
 
+    // EFFECTS: plays a sound when user clicks on add song button
     public void playAddSound(String soundName) {
         AudioInputStream audioInputStream;
         try {
@@ -100,7 +111,6 @@ public class AddListener implements ActionListener, DocumentListener {
         } catch (Exception e) {
             System.out.println("Could not play sound.");
         }
-
     }
 
 }

@@ -7,13 +7,12 @@ import java.awt.*;
 public class PlaylistMakerFrame extends JFrame {
     private HomePagePanel homePagePanel;
     private static final int WIDTH = 650;
-    private static final int HEIGHT = 400;
+    private static final int HEIGHT = 350;
 
     private SongListUI playlistSongList;
 
-//    private JLabel numOfSongs;
-
-    // EFFECTS: sets up the main window of the Playlist Maker application
+    // EFFECTS: sets up the main window of the Playlist Maker application,
+    //          displays list of songs and the home page panel
     public PlaylistMakerFrame() {
         super("Playlist Maker");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -24,13 +23,9 @@ public class PlaylistMakerFrame extends JFrame {
         playlistSongList = new SongListUI();
         playlistSongList.setOpaque(true);
         add(playlistSongList, BorderLayout.WEST);
-//        int songCount = playlistSongList.getSongList().getModel().getSize();
 
         homePagePanel = new HomePagePanel(this);
         add(homePagePanel, BorderLayout.EAST);
-//        numOfSongs = new JLabel("0 SONG(S)");
-//        numOfSongs.setText(songCount + " SONG(S)");
-//        homePagePanel.add(numOfSongs, BorderLayout.PAGE_START);
 
         pack();
         setVisible(true);

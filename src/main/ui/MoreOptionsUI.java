@@ -22,18 +22,16 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
     protected JButton saveButton;
 
     private PlaylistMakerFrame playlistMakerFrame;
+    private Playlist playlist;
 
     private static final String JSON_FILE = "./data/MyPlaylist.json";
-
-    private Playlist playlist;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    // EFFECTS: sets up the options panel,
-    //          displays save and load buttons
+    // EFFECTS: sets up the options panel with save and load buttons
     public MoreOptionsUI(PlaylistMakerFrame playlistMakerFrame) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        setBackground(Color.LIGHT_GRAY);
+        setBackground(Color.DARK_GRAY);
 
         loadButton = new JButton("Load Playlist");
         loadButton.setActionCommand("load");
@@ -53,6 +51,7 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
 
     }
 
+    // EFFECTS: processes user interaction
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("load".equals(e.getActionCommand())) {
@@ -63,7 +62,7 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads playlist from file
+    // EFFECTS: loads playlist from file and displays the list of songs on the songListUI
     public void loadPlaylist() {
         SongListUI songListUI = playlistMakerFrame.getSongListUI();
 
@@ -84,10 +83,9 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
 
     }
 
-    // MODIFIES: this
     // EFFECTS: saves playlist to file
     public void savePlaylist() {
-        createPlaylist();
+        uiToPlaylist();
 
         try {
             jsonWriter.openWriter();
@@ -101,8 +99,9 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
 
     }
 
-    public void createPlaylist() {
-        playlist = new Playlist("test");
+    // EFFECTS: pulls songs from songListUI into a new playlist to save to file
+    public void uiToPlaylist() {
+        playlist = new Playlist("Your Playlist");
         SongListUI songListUI = playlistMakerFrame.getSongListUI();
         JList songs = songListUI.getSongList();
         Object songObject;
@@ -112,6 +111,6 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
             Song newSong = new Song(songObject.toString());
             playlist.addSong(newSong);
         }
-
     }
+
 }
