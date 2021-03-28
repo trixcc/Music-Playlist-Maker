@@ -65,6 +65,7 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
     // EFFECTS: loads playlist from file and displays the list of songs on the songListUI
     public void loadPlaylist() {
         SongListUI songListUI = playlistMakerFrame.getSongListUI();
+        songListUI.getListModel().removeAllElements();
 
         try {
             playlist = jsonReader.readPlaylist();
