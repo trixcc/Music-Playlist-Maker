@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 // Represents a playlist having a name, size, and empty list of songs
 public class Playlist {
@@ -26,6 +25,7 @@ public class Playlist {
 
     }
 
+    // REQUIRES: s is not already in songList
     // MODIFIES: this
     // EFFECTS: adds Song s to playlist's songList and size of playlist increases by 1
     public void addSong(Song s) {

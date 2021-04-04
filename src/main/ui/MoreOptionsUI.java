@@ -1,5 +1,6 @@
 package ui;
 
+import model.InvalidNameLengthException;
 import model.Playlist;
 import model.Song;
 import persistence.JsonReader;
@@ -107,7 +108,11 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
 
     // EFFECTS: pulls songs from songListUI into a new playlist to save to file
     public void uiToPlaylist() {
-        playlist = new Playlist("Your Playlist");
+        try {
+            playlist = new Playlist("Your Playlist");
+        } catch (InvalidNameLengthException e) {
+            System.out.println("Playlist name cannot be zero length.");
+        }
         SongListUI songListUI = playlistMakerFrame.getSongListUI();
         JList songs = songListUI.getSongList();
         Object songObject;

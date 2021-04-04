@@ -4,6 +4,7 @@ import model.Playlist;
 import model.Song;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -21,6 +22,17 @@ public class JsonReaderTest {
             fail("IOException should have been thrown!");
         } catch (IOException e) {
             // success
+        }
+    }
+
+    // test for full persistence coverage
+    @Test
+    public void testReaderNoNamePlaylist() {
+        JsonReader testReader = new JsonReader("./data/testReaderNoNamePlaylist.json");
+        try {
+            Playlist playlist = testReader.readPlaylist();
+        } catch (IOException e) {
+            fail("IOException should not have been thrown!");
         }
     }
 

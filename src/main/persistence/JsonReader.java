@@ -1,5 +1,6 @@
 package persistence;
 
+import model.InvalidNameLengthException;
 import model.Playlist;
 import model.Song;
 import org.json.JSONArray;
@@ -44,10 +45,15 @@ public class JsonReader {
     // EFFECTS: parses playlist from jsonObject and returns it
     private Playlist parsePlaylist(JSONObject jsonObject) {
         String playlistName = jsonObject.getString("playlist name");
-        Playlist playlist = new Playlist(playlistName);
-        addSongs(playlist, jsonObject);
-        return playlist;
+        Playlist playlist = null;
+        try {
+            playlist = new Playlist(playlistName);
+            addSongs(playlist, jsonObject);
+        } catch (InvalidNameLengthException e) {
+            System.out.println("Playlist name cannot be zero length.");
+        }
 
+        return playlist;
     }
 
     // MODIFIES: playlist
@@ -66,7 +72,6 @@ public class JsonReader {
         Song song = new Song(title);
         playlist.addSong(song);
     }
-
 
 
 }

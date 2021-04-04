@@ -1,5 +1,6 @@
 package persistence;
 
+import model.InvalidNameLengthException;
 import model.Playlist;
 import model.Song;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,8 @@ public class JsonWriterTest {
             fail("IOException should have been thrown!");
         } catch (IOException e) {
             // success
+        } catch (InvalidNameLengthException le) {
+            fail("InvalidNameLengthException should not have been thrown!");
         }
     }
 
@@ -40,6 +43,8 @@ public class JsonWriterTest {
 
         } catch (IOException e) {
             fail("IOException should not have been thrown!");
+        } catch (InvalidNameLengthException le) {
+            fail("InvalidNameLengthException should not have been thrown!");
         }
     }
 
@@ -66,6 +71,8 @@ public class JsonWriterTest {
 
         } catch (IOException e) {
             fail("IOException should not have been thrown!");
+        } catch (InvalidNameLengthException le) {
+            fail("InvalidNameLengthException should not have been thrown!");
         }
     }
 }
