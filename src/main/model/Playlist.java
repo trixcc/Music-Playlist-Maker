@@ -13,9 +13,13 @@ public class Playlist {
     private int size;
     private List<Song> songList;
 
-    // REQUIRES: playlistName has non-zero length
     // EFFECTS: constructs a playlist with given name, initial size of zero, and an empty song list
-    public Playlist(String playlistName) {
+    //          if playlistName has zero length, throw InvalidNameLengthException
+    public Playlist(String playlistName) throws InvalidNameLengthException {
+        if (playlistName.length() == 0) {
+            throw new InvalidNameLengthException();
+        }
+
         name = playlistName;
         size = 0;
         songList = new ArrayList<>();
@@ -30,11 +34,15 @@ public class Playlist {
 
     }
 
-    // REQUIRES: playlist is not empty
     // MODIFIES: this
-    // EFFECTS: If Song s is in playlist's songList, removes it and size of playlist decreases by 1.
-    //          Otherwise, do nothing.
-    public void removeSong(Song s) {
+    // EFFECTS: if Song s is in playlist's songList, removes it and size of playlist decreases by 1
+    //          otherwise, do nothing
+    //          if playlist is empty, throw EmptyPlaylistException
+    public void removeSong(Song s) throws EmptyPlaylistException {
+        if (songList.size() == 0) {
+            throw new EmptyPlaylistException();
+        }
+
         if (songList.contains(s)) {
             songList.remove(s);
             size--;

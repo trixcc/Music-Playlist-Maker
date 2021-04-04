@@ -1,7 +1,9 @@
 {
    "songs": [
-      "blue",
-      "green"
+      "foo",
+      "boo",
+      "goo",
+      "too"
    ],
    "playlist name": "Your Playlist"
 }
