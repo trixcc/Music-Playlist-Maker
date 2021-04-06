@@ -22,4 +22,8 @@ I want to create a simple-to-use application that can organize my music (eg. bas
 - As a user, I want to be able to save my playlist to file.
 - As a user, I want to be able to load my playlist from file.
 
+#### Phase 4: Task 2
+Test and design a class in your model package that is robust.  
+Playlist class: constructor and removeSong method.
+
 

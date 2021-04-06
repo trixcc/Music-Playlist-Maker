@@ -19,7 +19,7 @@ class PlaylistTest {
         try {
             testPlaylist = new Playlist("Happy Music");
         } catch (InvalidNameLengthException e) {
-            fail("InvalidNameLengthException should not have been thrown");
+            fail("InvalidNameLengthException should not have been thrown!");
         }
         songA = new Song("September");
         songB = new Song("Electric Love");
@@ -45,7 +45,7 @@ class PlaylistTest {
             assertEquals(0, testPlaylist.getPlaylistSize());
             assertEquals(0, testSongList.size());
         } catch (InvalidNameLengthException e) {
-            fail("InvalidNameLengthException should not have been thrown");
+            fail("InvalidNameLengthException should not have been thrown!");
         }
     }
 

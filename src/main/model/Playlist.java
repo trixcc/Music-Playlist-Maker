@@ -13,7 +13,7 @@ public class Playlist {
     private List<Song> songList;
 
     // EFFECTS: constructs a playlist with given name, initial size of zero, and an empty song list
-    //          if playlistName has zero length, throw InvalidNameLengthException
+    //          if given playlistName has zero length, throw InvalidNameLengthException
     public Playlist(String playlistName) throws InvalidNameLengthException {
         if (playlistName.length() == 0) {
             throw new InvalidNameLengthException();
@@ -25,7 +25,6 @@ public class Playlist {
 
     }
 
-    // REQUIRES: s is not already in songList
     // MODIFIES: this
     // EFFECTS: adds Song s to playlist's songList and size of playlist increases by 1
     public void addSong(Song s) {
