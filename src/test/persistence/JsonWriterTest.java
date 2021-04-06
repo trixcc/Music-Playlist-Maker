@@ -3,6 +3,7 @@ package persistence;
 import model.InvalidNameLengthException;
 import model.Playlist;
 import model.Song;
+import model.SongAlreadyExistsException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,10 +70,12 @@ public class JsonWriterTest {
             assertEquals("LOVE AGAIN", songs.get(1).getTitle());
             assertEquals("foo", songs.get(2).getTitle());
 
-        } catch (IOException e) {
+        } catch (IOException e1) {
             fail("IOException should not have been thrown!");
-        } catch (InvalidNameLengthException le) {
+        } catch (InvalidNameLengthException e2) {
             fail("InvalidNameLengthException should not have been thrown!");
+        } catch (SongAlreadyExistsException e3) {
+            fail("SongAlreadyExistsException should not have been thrown!");
         }
     }
 }

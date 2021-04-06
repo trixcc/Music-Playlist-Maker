@@ -3,6 +3,7 @@ package persistence;
 import model.InvalidNameLengthException;
 import model.Playlist;
 import model.Song;
+import model.SongAlreadyExistsException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -70,7 +71,11 @@ public class JsonReader {
     private void addSong(Playlist playlist, Object nextSong) {
         String title = nextSong.toString();
         Song song = new Song(title);
-        playlist.addSong(song);
+        try {
+            playlist.addSong(song);
+        } catch (SongAlreadyExistsException e) {
+            System.out.println("Attempted to add a song that is already in playlist.");
+        }
     }
 
 

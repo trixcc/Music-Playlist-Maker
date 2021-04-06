@@ -34,10 +34,16 @@ public class AddListener implements ActionListener, DocumentListener {
     public void actionPerformed(ActionEvent e) {
         String title = songTitle.getText();
 
-        if (title.equals("") || alreadyInList(title)) {
-            Toolkit.getDefaultToolkit().beep();
-            songTitle.requestFocusInWindow();
-            songTitle.selectAll();
+//        if (title.equals("")) {
+//            Toolkit.getDefaultToolkit().beep();
+//            songTitle.requestFocusInWindow();
+//            songTitle.selectAll();
+//            return;
+//        }
+
+        if (alreadyInList(title)) {
+            JOptionPane.showMessageDialog(songList, "This song is already in your playlist.",
+                    "SongAlreadyExistsException", JOptionPane.PLAIN_MESSAGE);
             return;
         }
 

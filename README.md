@@ -24,6 +24,6 @@ I want to create a simple-to-use application that can organize my music (eg. bas
 
 #### Phase 4: Task 2
 Test and design a class in your model package that is robust.  
-Playlist class: constructor and removeSong method.
+Playlist class: constructor and addSong method are now robust.
 
 

@@ -3,6 +3,7 @@ package persistence;
 import model.Playlist;
 import model.Song;
 
+import model.SongAlreadyExistsException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,17 +23,6 @@ public class JsonReaderTest {
             fail("IOException should have been thrown!");
         } catch (IOException e) {
             // success
-        }
-    }
-
-    // test for full persistence coverage
-    @Test
-    public void testReaderNoNamePlaylist() {
-        JsonReader testReader = new JsonReader("./data/testReaderNoNamePlaylist.json");
-        try {
-            Playlist playlist = testReader.readPlaylist();
-        } catch (IOException e) {
-            fail("IOException should not have been thrown!");
         }
     }
 
@@ -63,4 +53,25 @@ public class JsonReaderTest {
             fail("IOException should not have been thrown");
         }
     }
+
+    @Test
+    public void testReaderNoNamePlaylist() {
+        JsonReader testReader = new JsonReader("./data/testReaderNoNamePlaylist.json");
+        try {
+            Playlist playlist = testReader.readPlaylist();
+        } catch (IOException e) {
+            fail("IOException should not have been thrown!");
+        }
+    }
+
+    @Test
+    public void testReaderDoubleSongPlaylist() {
+        JsonReader testReader = new JsonReader("./data/testReaderDoubleSongPlaylist.json");
+        try {
+            Playlist playlist = testReader.readPlaylist();
+        } catch (IOException e) {
+            fail("IOException should not have been thrown!");
+        }
+    }
+
 }

@@ -3,6 +3,7 @@ package ui;
 import model.InvalidNameLengthException;
 import model.Playlist;
 import model.Song;
+import model.SongAlreadyExistsException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -120,7 +121,11 @@ public class MoreOptionsUI extends JPanel implements ActionListener {
         for (int i = 0; i < songs.getModel().getSize(); i++) {
             songObject = songs.getModel().getElementAt(i);
             Song newSong = new Song(songObject.toString());
-            playlist.addSong(newSong);
+            try {
+                playlist.addSong(newSong);
+            } catch (SongAlreadyExistsException e) {
+                System.out.println("Attempted to add a song that is already in playlist.");
+            }
         }
     }
 

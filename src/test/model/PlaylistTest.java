@@ -28,7 +28,7 @@ class PlaylistTest {
     }
 
     @Test
-    public void testConstructorExceptionExpected() {
+    public void testConstructorWithZeroLengthNameExceptionExpected() {
         try {
             testPlaylist = new Playlist("");
             fail("InvalidNameLengthException should have been thrown!");
@@ -50,89 +50,103 @@ class PlaylistTest {
     }
 
     @Test
-    public void testAddSong() {
-        testPlaylist.addSong(songA);
-        assertEquals(1, testPlaylist.getPlaylistSize());
-        assertTrue(testSongList.contains(songA));
-
-    }
-
-    @Test
-    public void testAddMultipleSongs() {
-        testPlaylist.addSong(songA);
-        testPlaylist.addSong(songB);
-        testPlaylist.addSong(songC);
-        assertEquals(3, testPlaylist.getPlaylistSize());
-        assertTrue(testSongList.contains(songA));
-        assertTrue(testSongList.contains(songB));
-        assertTrue(testSongList.contains(songC));
-
-    }
-
-    @Test
-    public void testRemoveSongExceptionExpected() {
+    public void testAddSongAlreadyInPlaylistExceptionExpected() {
         try {
-            testPlaylist.removeSong(songA);
-            fail("EmptyPlaylistException should have been thrown!");
-        } catch (EmptyPlaylistException e) {
+            testPlaylist.addSong(songA);
+            assertEquals(1, testPlaylist.getPlaylistSize());
+            assertTrue(testSongList.contains(songA));
+            testPlaylist.addSong(songA);
+            fail("SongAlreadyExistsException should have been thrown!");
+        } catch (SongAlreadyExistsException e) {
             // success
         }
-    }
 
-    @Test
-    public void testRemoveSongExceptionNotExpected() {
-        testPlaylist.addSong(songA);
         assertEquals(1, testPlaylist.getPlaylistSize());
-        assertTrue(testSongList.contains(songA));
-
-        try {
-            testPlaylist.removeSong(songA);
-            assertEquals(0, testPlaylist.getPlaylistSize());
-            assertFalse(testSongList.contains(songA));
-        } catch (EmptyPlaylistException e) {
-            fail("EmptyPlaylistException should not have been thrown!");
-        }
 
     }
 
     @Test
-    public void testRemoveMultipleSongsExceptionNotExpected() {
-        testPlaylist.addSong(songA);
-        testPlaylist.addSong(songB);
-        testPlaylist.addSong(songC);
-        assertEquals(3, testPlaylist.getPlaylistSize());
-        assertTrue(testSongList.contains(songA));
-        assertTrue(testSongList.contains(songB));
-        assertTrue(testSongList.contains(songC));
-
+    public void testAddSingleSongExceptionNotExpected() {
         try {
-            testPlaylist.removeSong(songC);
-            testPlaylist.removeSong(songA);
+            testPlaylist.addSong(songA);
             assertEquals(1, testPlaylist.getPlaylistSize());
-            assertFalse(testSongList.contains(songA));
-            assertTrue(testSongList.contains(songB));
-            assertFalse(testSongList.contains(songC));
-        } catch (EmptyPlaylistException e) {
-            fail("EmptyPlaylistException should not have been thrown!");
+            assertTrue(testSongList.contains(songA));
+        } catch (SongAlreadyExistsException e) {
+            fail("SongAlreadyExistsException should not have been thrown!");
         }
 
     }
 
     @Test
-    public void testRemoveSongNotInSongListExceptionNotExpected() {
-        testPlaylist.addSong(songA);
-        assertEquals(1, testPlaylist.getPlaylistSize());
-        assertTrue(testSongList.contains(songA));
-        assertFalse(testSongList.contains(songB));
-
+    public void testAddMultipleSongsExceptionNotExpected() {
         try {
-            testPlaylist.removeSong(songB);
+            testPlaylist.addSong(songA);
+            testPlaylist.addSong(songB);
+            testPlaylist.addSong(songC);
+            assertEquals(3, testPlaylist.getPlaylistSize());
+            assertTrue(testSongList.contains(songA));
+            assertTrue(testSongList.contains(songB));
+            assertTrue(testSongList.contains(songC));
+        } catch (SongAlreadyExistsException e) {
+            fail("SongAlreadyExistsException should not have been thrown!");
+        }
+
+    }
+
+    @Test
+    public void testRemoveSingleSong() {
+        try {
+            testPlaylist.addSong(songA);
+            assertEquals(1, testPlaylist.getPlaylistSize());
+            assertTrue(testSongList.contains(songA));
+        } catch (SongAlreadyExistsException e) {
+            fail("SongAlreadyExistsException should not have been thrown!");
+        }
+
+        testPlaylist.removeSong(songA);
+        assertEquals(0, testPlaylist.getPlaylistSize());
+        assertFalse(testSongList.contains(songA));
+
+    }
+
+    @Test
+    public void testRemoveMultipleSongs() {
+        try {
+            testPlaylist.addSong(songA);
+            testPlaylist.addSong(songB);
+            testPlaylist.addSong(songC);
+            assertEquals(3, testPlaylist.getPlaylistSize());
+            assertTrue(testSongList.contains(songA));
+            assertTrue(testSongList.contains(songB));
+            assertTrue(testSongList.contains(songC));
+        } catch (SongAlreadyExistsException e) {
+            fail("SongAlreadyExistsException should not have been thrown!");
+        }
+
+        testPlaylist.removeSong(songC);
+        testPlaylist.removeSong(songA);
+        assertEquals(1, testPlaylist.getPlaylistSize());
+        assertFalse(testSongList.contains(songA));
+        assertTrue(testSongList.contains(songB));
+        assertFalse(testSongList.contains(songC));
+
+    }
+
+    @Test
+    public void testRemoveSongNotInSongList() {
+        try {
+            testPlaylist.addSong(songA);
             assertEquals(1, testPlaylist.getPlaylistSize());
             assertTrue(testSongList.contains(songA));
             assertFalse(testSongList.contains(songB));
-        } catch (EmptyPlaylistException e) {
-            fail("EmptyPlaylistException should not have been thrown!");
+        } catch (SongAlreadyExistsException e) {
+            fail("SongAlreadyExistsException should not have been thrown!");
         }
+
+        testPlaylist.removeSong(songB);
+        assertEquals(1, testPlaylist.getPlaylistSize());
+        assertTrue(testSongList.contains(songA));
+        assertFalse(testSongList.contains(songB));
 
     }
 

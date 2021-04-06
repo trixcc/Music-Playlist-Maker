@@ -27,7 +27,12 @@ public class Playlist {
 
     // MODIFIES: this
     // EFFECTS: adds Song s to playlist's songList and size of playlist increases by 1
-    public void addSong(Song s) {
+    //          if Song s is already in playlist, throw SongAlreadyExistsException
+    public void addSong(Song s) throws SongAlreadyExistsException {
+        if (songList.contains(s)) {
+            throw new SongAlreadyExistsException();
+        }
+
         songList.add(s);
         size++;
 
@@ -36,12 +41,7 @@ public class Playlist {
     // MODIFIES: this
     // EFFECTS: if Song s is in playlist's songList, removes it and size of playlist decreases by 1
     //          otherwise, do nothing
-    //          if playlist is empty, throw EmptyPlaylistException
-    public void removeSong(Song s) throws EmptyPlaylistException {
-        if (songList.size() == 0) {
-            throw new EmptyPlaylistException();
-        }
-
+    public void removeSong(Song s) {
         if (songList.contains(s)) {
             songList.remove(s);
             size--;

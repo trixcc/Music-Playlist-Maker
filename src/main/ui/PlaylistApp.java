@@ -1,9 +1,6 @@
 package ui;
 
-import model.EmptyPlaylistException;
-import model.InvalidNameLengthException;
-import model.Playlist;
-import model.Song;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -78,7 +75,7 @@ public class PlaylistApp {
             try {
                 playlist = new Playlist(command);
             } catch (InvalidNameLengthException e) {
-                System.out.println("[ Playlist name cannot be zero length. ]");
+                System.out.println("[ Playlist name cannot be zero length. ]\n");
             }
 
             if (command.length() > 0) {
@@ -86,7 +83,7 @@ public class PlaylistApp {
                 try {
                     playlist = new Playlist(command);
                 } catch (InvalidNameLengthException e) {
-                    System.out.println("[ Playlist name cannot be zero length. ]");
+                    System.out.println("[ Playlist name cannot be zero length. ]\n");
                 }
                 homePage();
             }
@@ -150,11 +147,13 @@ public class PlaylistApp {
             } else {
                 if (command.length() > 0) {
                     newSong = new Song(command);
-                    playlist.addSong(newSong);
-                    System.out.println("\n\tSong added.");
-
-                    runOn = false;
-
+                    try {
+                        playlist.addSong(newSong);
+                        System.out.println("\n\tSong added.");
+                        runOn = false;
+                    } catch (SongAlreadyExistsException e) {
+                        System.out.println("\n[ This song is already in your playlist. ]\n");
+                    }
                 }
             }
         }
@@ -167,7 +166,8 @@ public class PlaylistApp {
         String command;
         Song toRemove = null;
 
-        removeOptionInstructions();
+        System.out.println("\nEnter title of song to remove:");
+        System.out.println("Enter 0 to cancel.");
 
         while (runOn) {
             command = input.nextLine();
@@ -184,20 +184,10 @@ public class PlaylistApp {
                     }
                 }
 
-                try {
-                    playlist.removeSong(toRemove);
-                } catch (EmptyPlaylistException e) {
-                    System.out.println("[ Cannot remove a song from an empty playlist. ]");
-                }
+                playlist.removeSong(toRemove);
 
             }
         }
-    }
-
-    // EFFECTS: displays instructions for removing a song from playlist
-    private void removeOptionInstructions() {
-        System.out.println("\nEnter title of song to remove:");
-        System.out.println("Enter 0 to cancel.");
     }
 
     // EFFECTS: displays the user's playlist details

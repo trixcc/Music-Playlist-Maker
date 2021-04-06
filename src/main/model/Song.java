@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 // Represents a song having a title
 public class Song {
     private String title;
@@ -14,5 +16,21 @@ public class Song {
         return title;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Song song = (Song) o;
+        return Objects.equals(title, song.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
+    }
 }
 
