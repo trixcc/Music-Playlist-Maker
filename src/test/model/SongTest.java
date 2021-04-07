@@ -25,14 +25,14 @@ public class SongTest {
 
     @Test
     public void testEquals() {
-        Song testSongSame = new Song("Where Is The Love?");
-        assertTrue(testSongSame.equals(testSong));
+        Song testSameSong = new Song("Where Is The Love?");
+        assertTrue(testSong.equals(testSameSong));
 
-        Song testSongDifferent = new Song("Mamma Mia");
-        assertFalse(testSongDifferent.equals(testSong));
+        Song testDifferentSong = new Song("Mamma Mia");
+        assertFalse(testSong.equals(testDifferentSong));
 
-        String testSongString = new String("Where Is The Love?");
-        assertFalse(testSongString.equals(testSong));
+        int i = 10;
+        assertFalse(testSong.equals(i));
 
         assertFalse(testSong.equals(null));
 
