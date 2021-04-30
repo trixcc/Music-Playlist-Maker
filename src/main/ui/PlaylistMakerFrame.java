@@ -6,7 +6,7 @@ import java.awt.*;
 // Represents the main window of the Playlist Maker application
 public class PlaylistMakerFrame extends JFrame {
     private HomePagePanel homePagePanel;
-    private static final int WIDTH = 650;
+    private static final int WIDTH = 400;
     private static final int HEIGHT = 350;
 
     private SongListUI playlistSongList;
@@ -24,8 +24,11 @@ public class PlaylistMakerFrame extends JFrame {
         playlistSongList.setOpaque(true);
         add(playlistSongList, BorderLayout.WEST);
 
-        homePagePanel = new HomePagePanel(this);
-        add(homePagePanel, BorderLayout.EAST);
+//        homePagePanel = new HomePagePanel(this);
+//        add(homePagePanel, BorderLayout.EAST);
+
+        MenuOptions moMenu = new MenuOptions();
+        setJMenuBar(moMenu.createMenuBar());
 
         pack();
         setVisible(true);

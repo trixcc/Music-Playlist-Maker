@@ -9,7 +9,7 @@ import java.awt.*;
 // and a panel where user can add and remove songs
 // code based on ListDemo.java on Oracle
 public class SongListUI extends JPanel implements ListSelectionListener {
-    private static final int WIDTH = 450;
+    private static final int WIDTH = 400;
     private static final int HEIGHT = 350;
 
     private JList songList;
