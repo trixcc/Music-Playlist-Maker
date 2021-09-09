@@ -28,7 +28,7 @@ public class PlaylistMakerFrame extends JFrame {
 //        add(homePagePanel, BorderLayout.EAST);
 
         MenuOptions moMenu = new MenuOptions();
-        setJMenuBar(moMenu.createMenuBar());
+        setJMenuBar(moMenu.createMenuBar(this));
 
         pack();
         setVisible(true);
